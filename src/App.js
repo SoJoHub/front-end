@@ -1,9 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-function App() {
-  return <div className="App"></div>;
+export default function MyApp() {
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <div className="App"></div>;
+    </React.Fragment>
+  );
 }
-
-export default App;
