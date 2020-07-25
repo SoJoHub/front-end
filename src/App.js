@@ -1,13 +1,17 @@
 import React from "react";
 import "./App.css";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Navbar from "./components/Nav/Navbar";
 import ApplicationsContainer from "./containers/ApplicationsContainer";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <ApplicationsContainer />
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <div className="App">
+          <Navbar />
+          <ApplicationsContainer />
+    </div>;
+    </React.Fragment>
   );
 }
-
-export default App;
