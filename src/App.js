@@ -2,12 +2,16 @@ import React from "react";
 import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Navbar from "./components/Nav/Navbar";
+import ApplicationsContainer from "./containers/ApplicationsContainer";
 
-export default function MyApp() {
+export default function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className="App">{<Navbar />}</div>;
+      <div className="App">
+          <Navbar />
+          <ApplicationsContainer />
+    </div>;
     </React.Fragment>
   );
 }
