@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Navbar from "./components/Nav/Navbar";
+import Navbar from "./Components/Nav/Navbar";
 import ApplicationsContainer from "./containers/ApplicationsContainer";
 
 export default function App() {
@@ -9,9 +9,10 @@ export default function App() {
     <React.Fragment>
       <CssBaseline />
       <div className="App">
-          <Navbar />
-          <ApplicationsContainer />
-    </div>;
+        <Navbar />
+        <ApplicationsContainer />
+      </div>
+      ;
     </React.Fragment>
   );
 }

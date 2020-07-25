@@ -1,6 +1,6 @@
 import React from "react";
-import AddApplication from "../components/AddApplication";
-import ApplicationsList from "../components/ApplicationsList";
+import AddApplication from "../Components/AddApplication";
+import ApplicationsList from "../Components/ApplicationsList";
 
 class ApplicationsContainer extends React.Component {
   state = {
