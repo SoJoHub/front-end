@@ -11,9 +11,9 @@ export default function App() {
       <CssBaseline />
       <div className="App">
         <Navbar />
-        <SignUp />
+        {/* <SignUp /> */}
         {/* <Signin /> */}
-        {/* <ApplicationsContainer /> */}
+        <ApplicationsContainer />
       </div>
       ;
     </React.Fragment>
