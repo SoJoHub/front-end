@@ -4,7 +4,7 @@ import ApplicationsList from "../Components/ApplicationsList";
 
 class ApplicationsContainer extends React.Component {
   state = {
-    applications: [],
+    applications: ["abc"],
   };
 
   componentDidMount() {
