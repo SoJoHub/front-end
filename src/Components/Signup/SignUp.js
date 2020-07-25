@@ -81,7 +81,8 @@ export default function SignUp() {
     fetch("http://localhost:3000/users", payLoad)
       .then((r) => r.json())
       .then((token) => {
-        console.log(token);
+        const userInfo = { userToken: token.token, name: token.user.name };
+        window.localStorage.setItem("sojohub", JSON.stringify(userInfo));
       });
   };
 
