@@ -1,6 +1,6 @@
 import React from "react";
-import AddApplication from "../Components/AddApplication";
-import ApplicationsList from "../Components/ApplicationsList";
+import AddApplication from "../components/AddApplication";
+import ApplicationsList from "../components/ApplicationsList";
 
 class ApplicationsContainer extends React.Component {
   state = {
@@ -11,7 +11,6 @@ class ApplicationsContainer extends React.Component {
     fetch("http://localhost:3000/applications")
       .then((resp) => resp.json())
       .then((applications) => {
-        debugger;
         this.setState({
           applications: applications,
         });

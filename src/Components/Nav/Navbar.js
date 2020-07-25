@@ -38,7 +38,7 @@ export default function Navbar() {
           <Hidden smDown>
             <Button color="inherit" component={Link} to="/forum">Forum</Button>
             <Button color="inherit" component={Link} to="/applications">My Applications</Button>
-            <Button color="inherit" component={Link} >My Interviews</Button>
+            <Button color="inherit" component={Link} to='#'>My Interviews</Button>
             <Button color="inherit" className={classes.right} component={Link} to="/login">Login</Button>
             <Button color="inherit" component={Link} to="/logout">Logout</Button>
             <Button color="inherit" component={Link} to="/signup">Signup</Button>
