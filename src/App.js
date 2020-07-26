@@ -6,19 +6,42 @@ import ApplicationsContainer from "./containers/ApplicationsContainer";
 import SignUp from "./Components/Signup/SignUp";
 import Signin from "./Components/Signin/Signin";
 import { Route, Switch } from "react-router-dom";
-export default function App() {
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login" component={Signin} />
-          <Route exact path="/Applications" component={ApplicationsContainer} />
-        </Switch>
-      </div>
-      ;
-    </React.Fragment>
-  );
+
+
+class App extends React.Component {
+
+  state = {
+    loggedIn: window.localStorage.getItem("sojohub")
+  }
+
+  setLoginState = () => {
+    this.setState(prevState => ({
+      loggedIn: !prevState.loggedIn
+    }))
+  }
+
+  render(){
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <div className="App">
+          <Navbar loggedIn={this.state.loggedIn} setLoginState={this.setLoginState}/>
+          <Switch>
+            {this.state.loggedIn !== "null" || !this.state.loggedIn ? (
+              <Route exact path="/Applications" component={ApplicationsContainer} />
+            ):(
+              <>
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/login" component={Signin} />
+              </>
+            )}
+   
+          </Switch>
+        </div>
+        ;
+      </React.Fragment>
+    );
+  }
 }
+
+export default App;
