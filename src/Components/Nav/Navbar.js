@@ -8,6 +8,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Hidden from "@material-ui/core/Hidden";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -29,7 +30,9 @@ export default function Navbar(props) {
     // return <Redirect to="/login" />;
     console.log(history);
     history.push("/login");
+    props.setLoginState()
   };
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -50,26 +53,33 @@ export default function Navbar(props) {
             <Button color="inherit" component={Link} to="/forum">
               Forum
             </Button>
-            <Button color="inherit" component={Link} to="/applications">
-              My Applications
-            </Button>
-            <Button color="inherit" component={Link} to="#">
-              My Interviews
-            </Button>
-            <Button
-              color="inherit"
-              className={classes.right}
-              component={Link}
-              to="/login"
-            >
-              Login
-            </Button>
-            <Button color="inherit" onClick={handleLogout} to="/logout">
+            {/* CONDITIONALS FOR NAV BAR DISPLAY */}
+            {props.loggedIn !== "null" || !props.loggedIn ? (
+              <>
+              <Button color="inherit" component={Link} to="/applications">
+               My Applications
+              </Button>
+              <Button color="inherit" component={Link} to="#">
+                My Interviews
+              </Button>
+              <Button color="inherit" onClick={handleLogout} to="/logout">
               Logout
-            </Button>
-            <Button color="inherit" component={Link} to="/signup">
-              Signup
-            </Button>
+              </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                color="inherit"
+                className={classes.right}
+                component={Link}
+                to="/login">
+                  Login
+                </Button>
+                <Button color="inherit" component={Link} to="/signup">
+                  Signup
+                </Button>
+            </>
+            )}
           </Hidden>
         </Toolbar>
       </AppBar>
