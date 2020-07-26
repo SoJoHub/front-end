@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
   const [state, setState] = useState({
     email: "",
@@ -76,6 +76,7 @@ export default function SignIn() {
       .then((token) => {
         const userInfo = { userToken: token.token, name: token.user.name };
         window.localStorage.setItem("sojohub", JSON.stringify(userInfo));
+        props.setLoginState(userInfo);
       });
   };
   return (

@@ -29,8 +29,8 @@ export default function Navbar(props) {
     window.localStorage.setItem("sojohub", null);
     // return <Redirect to="/login" />;
     console.log(history);
-    history.push("/login");
-    props.setLoginState()
+    // history.push("/login");
+    props.setLoginState("null");
   };
 
   return (
@@ -56,29 +56,30 @@ export default function Navbar(props) {
             {/* CONDITIONALS FOR NAV BAR DISPLAY */}
             {props.loggedIn !== "null" || !props.loggedIn ? (
               <>
-              <Button color="inherit" component={Link} to="/applications">
-               My Applications
-              </Button>
-              <Button color="inherit" component={Link} to="#">
-                My Interviews
-              </Button>
-              <Button color="inherit" onClick={handleLogout} to="/logout">
-              Logout
-              </Button>
+                <Button color="inherit" component={Link} to="/applications">
+                  My Applications
+                </Button>
+                <Button color="inherit" component={Link} to="#">
+                  My Interviews
+                </Button>
+                <Button color="inherit" onClick={handleLogout} to="/logout">
+                  Logout
+                </Button>
               </>
             ) : (
               <>
                 <Button
-                color="inherit"
-                className={classes.right}
-                component={Link}
-                to="/login">
+                  color="inherit"
+                  className={classes.right}
+                  component={Link}
+                  to="/login"
+                >
                   Login
                 </Button>
                 <Button color="inherit" component={Link} to="/signup">
                   Signup
                 </Button>
-            </>
+              </>
             )}
           </Hidden>
         </Toolbar>

@@ -7,35 +7,44 @@ import SignUp from "./Components/Signup/SignUp";
 import Signin from "./Components/Signin/Signin";
 import { Route, Switch } from "react-router-dom";
 
-
 class App extends React.Component {
-
   state = {
-    loggedIn: window.localStorage.getItem("sojohub")
-  }
+    loggedIn: window.localStorage.getItem("sojohub"),
+  };
 
-  setLoginState = () => {
-    this.setState(prevState => ({
-      loggedIn: !prevState.loggedIn
-    }))
-  }
+  setLoginState = (userInfo) => {
+    this.setState((prevState) => ({
+      loggedIn: userInfo,
+    }));
+  };
 
-  render(){
+  render() {
+    console.log(this.state);
     return (
       <React.Fragment>
         <CssBaseline />
         <div className="App">
-          <Navbar loggedIn={this.state.loggedIn} setLoginState={this.setLoginState}/>
+          <Navbar
+            loggedIn={this.state.loggedIn}
+            setLoginState={this.setLoginState}
+          />
           <Switch>
             {this.state.loggedIn !== "null" || !this.state.loggedIn ? (
-              <Route exact path="/Applications" component={ApplicationsContainer} />
-            ):(
+              <Route
+                exact
+                path="/Applications"
+                component={ApplicationsContainer}
+              />
+            ) : (
               <>
                 <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/login" component={Signin} />
+                <Route
+                  exact
+                  path="/login"
+                  render={() => <Signin setLoginState={this.setLoginState} />}
+                />
               </>
             )}
-   
           </Switch>
         </div>
         ;
