@@ -49,9 +49,9 @@ export default function Thread(props) {
                   className={classes.inline}
                   color="textPrimary"
                 >
-                  Ali Connors
+                {props.threadInfo.user_name}
                 </Typography>
-                {" — I'll be in your neighborhood doing errands this…"}
+                   {props.threadInfo.description}
               </React.Fragment>
             }
           />

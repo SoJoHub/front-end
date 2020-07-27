@@ -8,6 +8,8 @@ import Signin from "./Components/Signin/Signin";
 import { Route, Switch } from "react-router-dom";
 import ThreadDetail from "./containers/Forum/ThreadDetail";
 import Forum from "./containers/Forum/Forum";
+
+
 class App extends React.Component {
   state = {
     loggedIn: window.localStorage.getItem("sojohub"),
@@ -20,10 +22,11 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+
     return (
-      <React.Fragment>
-        <CssBaseline />
+      <>
+      {/* allows for cross-browser support by resetting default css styling */}
+        <CssBaseline />  
         <div className="App">
           <Navbar
             loggedIn={this.state.loggedIn}
@@ -55,7 +58,7 @@ class App extends React.Component {
           </Switch>
         </div>
         ;
-      </React.Fragment>
+      </>
     );
   }
 }

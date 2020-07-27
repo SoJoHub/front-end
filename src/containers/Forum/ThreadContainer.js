@@ -12,6 +12,7 @@ export default function TheadContainer() {
   }, []);
 
   const renderThread = () => {
+    console.log(state)
     return state.map((thread) => (
       <Thread threadInfo={thread} key={thread.id} />
     ));
