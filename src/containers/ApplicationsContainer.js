@@ -29,14 +29,15 @@ class ApplicationsContainer extends React.Component {
 
   addApplication = (application) => {
     this.setState({
-      applications: [...this.state.applications, application]
-    })
-  }
+      applications: [...this.state.applications, application],
+    });
+  };
 
   render() {
     return (
       <div>
-        <AddApplication addApplication={this.addApplication}/>
+        <h1> My Applications </h1>
+        <AddApplication addApplication={this.addApplication} />
         <ApplicationsList applications={this.state.applications} />
       </div>
     );
