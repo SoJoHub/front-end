@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
 import ThreadDetail from "./ThreadDetail";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",

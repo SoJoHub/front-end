@@ -6,8 +6,8 @@ import ApplicationsContainer from "./containers/ApplicationsContainer";
 import SignUp from "./Components/Signup/SignUp";
 import Signin from "./Components/Signin/Signin";
 import { Route, Switch } from "react-router-dom";
-import ThreadContainer from "./containers/Forum/ThreadContainer";
 import ThreadDetail from "./containers/Forum/ThreadDetail";
+import Forum from "./containers/Forum/Forum";
 class App extends React.Component {
   state = {
     loggedIn: window.localStorage.getItem("sojohub"),
@@ -30,7 +30,7 @@ class App extends React.Component {
             setLoginState={this.setLoginState}
           />
           <Switch>
-            <Route exact path="/Forum" component={ThreadContainer} />
+            <Route exact path="/Forum" component={Forum} />
             <Route
               exact
               path="/Forum/Topic/:id"
