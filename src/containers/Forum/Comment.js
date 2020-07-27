@@ -18,10 +18,10 @@ export default function Comment(props) {
             <Avatar alt="Remy Sharp" src={imgLink} />
           </Grid>
           <Grid justifyContent="left" item xs zeroMinWidth>
-            <h4 style={{ margin: 0, textAlign: "left" }}>Michel Michel</h4>
+            <h4 style={{ margin: 0, textAlign: "left" }}>{props.comment.user_name}</h4>
             <p style={{ textAlign: "left" }}>{props.comment.content}</p>
             <p style={{ textAlign: "left", color: "gray" }}>
-              {props.comment.date_time}
+              {props.comment.created_at}
             </p>
           </Grid>
         </Grid>

@@ -13,7 +13,7 @@ export default function ThreadDetail(props) {
 
   console.log(state);
   const renderComment = () => {
-    return state.comments.map((comment) => (
+    return state.topic.comments.map((comment) => (
       <Comment comment={comment} key={comment.id} />
     ));
   };
@@ -21,7 +21,7 @@ export default function ThreadDetail(props) {
     <div>
       <h1>{state.topic && state.topic.title}</h1>
       <NewComment topic_id={props.match.params.id}/>
-      {state.comments && renderComment()}
+      {state.topic && renderComment()}
     </div>
   );
 }

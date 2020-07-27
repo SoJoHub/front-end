@@ -49,7 +49,7 @@ export default function Thread(props) {
                   className={classes.inline}
                   color="textPrimary"
                 >
-                {props.threadInfo.user_name}
+                {props.threadInfo.user_name} <span> - </span>
                 </Typography>
                    {props.threadInfo.description}
               </React.Fragment>
