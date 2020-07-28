@@ -63,7 +63,7 @@ export default function Navbar(props) {
                 <Button color="inherit" component={Link} to="/applications">
                   My Applications
                 </Button>
-                <Button color="inherit" component={Link} to="#">
+                <Button color="inherit" component={Link} to="/interviews">
                   My Interviews
                 </Button>
                 <Button color="inherit" onClick={handleLogout} to="/logout">

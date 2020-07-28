@@ -196,8 +196,7 @@ export default function AddApplication(props) {
                     Selected for Interview
                   </MenuItem>
                   <MenuItem value="Interviewed">Interviewed</MenuItem>
-                  <MenuItem value="Accepted">Accepted</MenuItem>
-                  <MenuItem value="Awaiting Offer">Awaiting Offer</MenuItem>
+                  <MenuItem value="Accepted">Received Offer</MenuItem>
                   <MenuItem value="Rejected">Rejected</MenuItem>
                 </Select>
               </FormControl>
