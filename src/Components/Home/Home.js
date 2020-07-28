@@ -33,11 +33,11 @@ const Home = () => {
     });
   };
 
-  const getApplications = () => {
-    return applications.map((job) => {
-      return job.job_listing;
-    });
-  };
+  // const getApplications = () => {
+  //   return applications.map((job) => {
+  //     return job.job_listing;
+  //   });
+  // };
 
   const getStats = () => {
     const jobsApplied = applications.length;
@@ -49,15 +49,41 @@ const Home = () => {
         return a;
       }
     }, 0);
-    // return jobsApplied;
-    return interviews;
+
+    const offers = applications.reduce((a, b) => {
+      if (b.status === "recieved offer") {
+        return a += 1;
+      } else {
+        return a;
+      }
+    }, 0);
+
+    const rejections = applications.reduce((a, b) => {
+      if (b.status === "rejected") {
+        return a += 1;
+      } else {
+        return a;
+      }
+    }, 0);
+  
+    const noResponse = applications.reduce((a, b) => {
+      if (b.status === "applied" || b.status === "no response" ) {
+        return a += 1;
+      } else {
+        return a;
+      }
+    }, 0);
+
+
+    return {interviews: interviews, jobsApplied: jobsApplied, offers: offers, rejections: rejections, noResponse: noResponse}
   };
   console.log(getStats());
   return (
     <div>
+      
       {<Interviews interviews={getInterviews()} />}
       {<ApplicationsList applications={applications} />}
-      {<Stats />}
+      {<Stats stat={getStats()}/>}
     </div>
   );
 };
