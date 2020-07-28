@@ -34,6 +34,7 @@ class ApplicationsContainer extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <h1> My Applications </h1>
