@@ -42,6 +42,7 @@ export default function Navbar(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            component={Link} to="/"
           >
             <Hidden mdUp>
               <MenuIcon />

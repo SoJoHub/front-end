@@ -8,7 +8,7 @@ import Signin from "./Components/Signin/Signin";
 import { Route, Switch } from "react-router-dom";
 import ThreadDetail from "./containers/Forum/ThreadDetail";
 import Forum from "./containers/Forum/Forum";
-
+import Home from "./Components/Home/Home";
 
 class App extends React.Component {
   state = {
@@ -22,11 +22,10 @@ class App extends React.Component {
   };
 
   render() {
-
     return (
       <>
-      {/* allows for cross-browser support by resetting default css styling */}
-        <CssBaseline />  
+        {/* allows for cross-browser support by resetting default css styling */}
+        <CssBaseline />
         <div className="App">
           <Navbar
             loggedIn={this.state.loggedIn}
@@ -40,11 +39,14 @@ class App extends React.Component {
               render={(props) => <ThreadDetail {...props} />}
             />
             {this.state.loggedIn !== "null" || !this.state.loggedIn ? (
-              <Route
-                exact
-                path="/Applications"
-                component={ApplicationsContainer}
-              />
+              <>
+                <Route exact path="/" component={Home} />
+                <Route
+                  exact
+                  path="/Applications"
+                  component={ApplicationsContainer}
+                />
+              </>
             ) : (
               <>
                 <Route exact path="/signup" component={SignUp} />
