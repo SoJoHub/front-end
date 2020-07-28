@@ -11,6 +11,12 @@ import PostAddIcon from '@material-ui/icons/PostAdd'
 
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch'
+    }
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -26,37 +32,39 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 2)
   },
+  warning: {
+    color: "red"
+  }
 }));
 
 export default function NewThread(props) {
   const classes = useStyles();
 
-  const [postForm, setPostForm] = useState(false); 
-  const [state, setState] = useState({
-    topic: ""
-  });
+  const user = window.localStorage.getItem("sojohub");
+  const token = user && user !== "null" ? JSON.parse(user).userToken : null; 
 
 
   const displayFormHanlder = () => {
-      setPostForm(prevState => {
+      props.setPostForm(prevState => {
           return !prevState
       })
   }
 
   const changeHandler = (e) => {
     e.persist();
-    setState((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+      props.setformState((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value,
+      }));
+    console.log(props.formState)
   };
 
   const handlePostCreation = (e) => {
     e.preventDefault();
-    let user = window.localStorage.getItem("sojohub");
-    const token = JSON.parse(user).userToken;
+    // let user = window.localStorage.getItem("sojohub");
+    // const token = JSON.parse(user).userToken;
     const payLoad = {
       method: "POST",
       headers: {
@@ -64,18 +72,47 @@ export default function NewThread(props) {
         "Authorization": token,
         Accept: "application/json",
       },
-      body: JSON.stringify(state),
+      body: JSON.stringify(props.formState),
     };
     fetch("http://localhost:3000/topics", payLoad)
       .then((r) => r.json())
       .then((newPost) => {
         console.log(newPost)
+        props.renderNewPost(prevState => (
+          [newPost, ...prevState]
+        ))
       });
   };
 
+
+  const handlePostEdit = (e) => {
+    e.preventDefault();
+    // let user = window.localStorage.getItem("sojohub");
+    // const token = JSON.parse(user).userToken;
+    const payLoad = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+        Accept: "application/json",
+      },
+      body: JSON.stringify(props.formState),
+    };
+    fetch(`http://localhost:3000/topics/${props.postId}`, payLoad)
+      .then((r) => r.json())
+      .then((updatedPost) => {
+        console.log(updatedPost)
+      });
+  };
+
+  // const showEditForm = () => {
+  //   props.setIsNew(false)
+  //   props.setPostForm(true)
+  // }
+  
   return (
     <> 
-    {postForm ? (
+    {props.postForm ? (
     <Container component="main" maxWidth="lg">
         <Button onClick={displayFormHanlder} variant="contained" color="primary">
                 Hide Post Form
@@ -87,9 +124,12 @@ export default function NewThread(props) {
           <PostAddIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Create A New Post
+          {props.postId ? "Edit Post" : "Create A New Post"}
         </Typography>
-        <form onSubmit={handlePostCreation} className={classes.form} noValidate>
+        <Typography component="h1" className={classes.warning}>
+          {!token && "Only logged in users can create posts!"}
+        </Typography>
+        <form onSubmit={props.postId ? handlePostEdit : handlePostCreation} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -101,9 +141,27 @@ export default function NewThread(props) {
             autoComplete="topic"
             autoFocus
             onChange={changeHandler}
-            value={state.topic}
+            value={props.formState.topic}
           />
-          
+          <div>
+          <TextField
+            className={classes.root}
+            variant="outlined"
+            margin="normal"
+            required
+            rowsMax="10"
+            fullWidth
+            multiline={true}
+            rows="4"
+            id="description"
+            label="description"
+            name="description"
+            autoComplete="description"
+            autoFocus
+            onChange={changeHandler}
+            value={props.formState.description}
+          />
+          </div>
     
           <Button
             type="submit"
@@ -111,15 +169,16 @@ export default function NewThread(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={!token}
           >
-            Create Post
+          {props.postId ? "Edit Post" : "Create Post"}
           </Button>
         </form>
       </div>
     </Container>
     ) : (
         <Button onClick={displayFormHanlder} variant="contained" color="primary">
-            Create Post
+        {props.postId ? "Edit Post" : "Create Post"}
         </Button>
     )}
  </>

@@ -9,7 +9,8 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
-import ThreadDetail from "./ThreadDetail";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,16 +21,50 @@ const useStyles = makeStyles((theme) => ({
   inline: {
     display: "inline",
   },
+  button: {
+    margin: "1px"
+  }
 }));
 
 export default function Thread(props) {
   const history = useHistory();
 
+  const user_id = JSON.parse(window.localStorage.getItem('sojohub')) ? JSON.parse(window.localStorage.getItem('sojohub')).user_id : null
+
   const handleClick = () => {
     history.push(`/forum/topic/${props.threadInfo.id}`);
   };
+
+  const deleteThread = () => {
+    let user = window.localStorage.getItem("sojohub");
+    const token = JSON.parse(user).userToken;
+    const payLoad = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+        Accept: "application/json",
+      }
+    };
+    fetch(`http://localhost:3000/topics/${props.threadInfo.id}`, payLoad)
+      .then((r) => r.json())
+      .then((deletedThread) => {
+        console.log(deletedThread)
+        props.deletePost(prevState => {
+          const newState = prevState.filter(item => item.id !== deletedThread.id)
+          return newState
+        })
+      });
+  }
+
+  const editThread = () => {
+    props.showForm(props.threadInfo)
+
+  }
+
   const classes = useStyles();
-  console.log(props.threadInfo);
+  //console.log(props.threadInfo);
+  //console.log(JSON.parse(window.localStorage.getItem('sojohub')).user_id)
   return (
     <Container maxWidth="md">
       <List className={classes.root}>
@@ -55,6 +90,28 @@ export default function Thread(props) {
               </React.Fragment>
             }
           />
+          {props.threadInfo.user_id == user_id &&
+          <> 
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<DeleteIcon />}
+            onClick={deleteThread}
+            >
+            Delete
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            startIcon={<DeleteIcon />}
+            onClick={editThread}
+            >
+            Edit
+          </Button>
+          </>
+          }
         </ListItem>
       </List>
     </Container>

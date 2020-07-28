@@ -7,12 +7,8 @@ export default class Forum extends React.Component {
     return (
       <div>
         <h1> Welcome to the Forum!</h1>
-        <NewThread />
+        {/* <NewThread /> */}
         <ThreadContainer />
-        {/* <Thread /> */}
-        {/* <Comment />
-        <Comment />
-        <Comment /> */}
       </div>
     );
   }
