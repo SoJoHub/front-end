@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ActionCableProvider } from "react-actioncable-provider";
-import { API_WS_ROOT } from "./constants";
+import { API_WS_ROOT } from './constants/index';
 import "./index.css";
 import App from "./App";
 import "fontsource-roboto"; // for material ui font dependency

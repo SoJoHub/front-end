@@ -1,67 +1,67 @@
-// / src/cemnnoopst / ConversationsList.js;
+
 
 import React from "react";
 import { ActionCable } from "react-actioncable-provider";
-import { API_ROOT } from "../constants";
+import { API_ROOT } from "../constants/index";
 import NewConversationForm from "../constants/NewConversationForm";
 import MessagesArea from "../constants/MessagesArea";
 import Cable from "../constants/Cable";
 
 class ConversationsList extends React.Component {
   state = {
-    conversations: [],
-    activeConversation: null,
+    topics: [],
+    activeTopics: null,
   };
 
   componentDidMount = () => {
-    fetch(`${API_ROOT}/conversations`)
+    fetch(`${API_ROOT}/topics`)
       .then((res) => res.json())
-      .then((conversations) => this.setState({ conversations }));
+      .then((topics) => this.setState({ topics }));
   };
 
   handleClick = (id) => {
-    this.setState({ activeConversation: id });
+    this.setState({ activeTopics: id });
   };
 
-  handleReceivedConversation = (response) => {
-    const { conversation } = response;
+  handleReceivedTopic= (response) => {
+    const { topic } = response;
     this.setState({
-      conversations: [...this.state.conversations, conversation],
+      topics: [...this.state.topics, topic],
     });
   };
 
-  handleReceivedMessage = (response) => {
-    const { message } = response;
-    const conversations = [...this.state.conversations];
-    const conversation = conversations.find(
-      (conversation) => conversation.id === message.conversation_id
+  handleReceivedComment = (response) => {
+    const { comment } = response;
+    const topics = [...this.state.topics];
+    const topic = topics.find(
+      (topic) => topic.id === comment.topic_id
     );
-    conversation.messages = [...conversation.messages, message];
-    this.setState({ conversations });
+    topic.comments = [...topic.comments, comment];
+    this.setState({ topics });
   };
 
   render = () => {
-    const { conversations, activeConversation } = this.state;
+    const { topics, activeTopics } = this.state;
     return (
       <div className="conversationsList">
         <ActionCable
-          channel={{ channel: "ConversationsChannel" }}
-          onReceived={this.handleReceivedConversation}
+          channel={{ channel: "TopicsChannel" }}
+          onReceived={this.handleReceivedTopic}
         />
-        {this.state.conversations.length ? (
+        {this.state.topics.length ? (
           <Cable
-            conversations={conversations}
-            handleReceivedMessage={this.handleReceivedMessage}
+            topics={topics}
+            handleReceivedComment={this.handleReceivedComment}
           />
         ) : null}
-        <h2>Conversations</h2>
-        <ul>{mapConversations(conversations, this.handleClick)}</ul>
+        <h2>Topics</h2>
+        <ul>{mapTopics(topics, this.handleClick)}</ul>
         <NewConversationForm />
-        {activeConversation ? (
+        {activeTopics ? (
           <MessagesArea
-            conversation={findActiveConversation(
-              conversations,
-              activeConversation
+            topic={findActiveTopics(
+              topics,
+              activeTopics
             )}
           />
         ) : null}
@@ -74,17 +74,17 @@ export default ConversationsList;
 
 // helpers
 
-const findActiveConversation = (conversations, activeConversation) => {
-  return conversations.find(
-    (conversation) => conversation.id === activeConversation
+const findActiveTopics = (topics, activeTopics) => {
+  return topics.find(
+    (topic) => topic.id === activeTopics
   );
 };
 
-const mapConversations = (conversations, handleClick) => {
-  return conversations.map((conversation) => {
+const mapTopics = (topics, handleClick) => {
+  return topics.map((topic) => {
     return (
-      <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-        {conversation.title}
+      <li key={topic.id} onClick={() => handleClick(topic.id)}>
+        {topic.title}
       </li>
     );
   });

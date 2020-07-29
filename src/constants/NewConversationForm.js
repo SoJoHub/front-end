@@ -1,7 +1,7 @@
 // src/components/NewConversationForm.js
 
 import React from "react";
-import { API_ROOT, HEADERS } from "../constants";
+import { API_ROOT, HEADERS } from "./index";
 
 class NewConversationForm extends React.Component {
   state = {
@@ -14,7 +14,10 @@ class NewConversationForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${API_ROOT}/conversations`, {
+    let user = window.localStorage.getItem("sojohub");
+    const token = JSON.parse(user).userToken;
+    
+    fetch(`${API_ROOT}/topics`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(this.state),

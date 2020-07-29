@@ -1,42 +1,42 @@
 // src/components/NewMessageForm.js
 
 import React from "react";
-import { API_ROOT, HEADERS } from "../constants";
+import { API_ROOT, HEADERS } from "./index";
 
 class NewMessageForm extends React.Component {
   state = {
-    text: "",
-    conversation_id: this.props.conversation_id,
+    content: "",
+    topic_id: this.props.topic_id,
   };
 
   componentWillReceiveProps = (nextProps) => {
-    this.setState({ conversation_id: nextProps.conversation_id });
+    this.setState({ topic_id: nextProps.topic_id });
   };
 
   handleChange = (e) => {
-    this.setState({ text: e.target.value });
+    this.setState({ content: e.target.value });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`${API_ROOT}/messages`, {
+    fetch(`${API_ROOT}/comments`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(this.state),
     });
-    this.setState({ text: "" });
+    this.setState({ content: "" });
   };
 
   render = () => {
     return (
       <div className="newMessageForm">
         <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
+          <label>New Comment:</label>
           <br />
           <input
-            type="text"
-            value={this.state.text}
+            type="content"
+            value={this.state.content}
             onChange={this.handleChange}
           />
           <input type="submit" />
