@@ -6,9 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import PostAddIcon from '@material-ui/icons/PostAdd'
-
-
+import PostAddIcon from "@material-ui/icons/PostAdd";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,107 +26,173 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  warning: {
+    color: "red",
+  },
 }));
 
 export default function NewComment(props) {
   const classes = useStyles();
+  let user = window.localStorage.getItem("sojohub");
+  const token = JSON.parse(user).userToken;
+  // const [postForm, setPostForm] = useState(false);
+  // const [state, setState] = useState({
+  //   comment: ""
+  // });
 
-  const [postForm, setPostForm] = useState(false); 
-  const [state, setState] = useState({
-    comment: ""
-  });
-
-
-  const displayFormHanlder = () => {
-      setPostForm(prevState => {
-          return !prevState
-      })
-  }
+  const handleCommentEdit = (e) => {
+    e.preventDefault();
+    // let user = window.localStorage.getItem("sojohub");
+    // const token = JSON.parse(user).userToken;
+    const payLoad = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ content: props.comment.content }),
+    };
+    fetch(`http://localhost:3000/comments/${props.comment.id}`, payLoad)
+      .then((r) => r.json())
+      .then((updatedComObj) => {
+        props.commentState((prevState) => {
+          const updatedComments = prevState.topic.comments.filter(
+            (com) => com.id !== props.comment.id
+          );
+          return {
+            topic: {
+              ...prevState.topic,
+              comments: [...updatedComments, updatedComObj],
+            },
+          };
+        });
+      });
+  };
+  // return {
+  //   topic: {
+  //     ...prevState.topic,
+  //     comments: [
+  //       ...prevState.topic.comments,
+  //       { ...updatedComment, content: updatedComment.content },
+  //     ],
+  //       },
+  //     };
+  //   });
+  // });
+  // };
+  const displayFormHandler = () => {
+    props.setPostForm((prevState) => {
+      return !prevState;
+    });
+  };
 
   const changeHandler = (e) => {
     e.persist();
-    setState((prevState) => ({
+    props.setComment((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      content: e.target.value,
     }));
   };
 
-  const handlePostCreation = (e) => {
+  const handleCommentCreation = (e) => {
     e.preventDefault();
-    let user = window.localStorage.getItem("sojohub");
-    const token = JSON.parse(user).userToken;
+    // let user = window.localStorage.getItem("sojohub");
+    // const token = JSON.parse(user).userToken;
     const payLoad = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
         Accept: "application/json",
       },
-      body: JSON.stringify({...state, topic_id: props.topic_id}),
+      body: JSON.stringify({ ...props.comment, topic_id: props.topic_id }),
     };
+    console.log(payLoad);
     fetch("http://localhost:3000/comments", payLoad)
       .then((r) => r.json())
       .then((newComment) => {
-        console.log(newComment)
-        props.commentState(prevState => {
-          return {topic: {
-              ...prevState.topic, comments:[...prevState.topic.comments, {...newComment.comment, user_name: newComment.user_name}]
-          }
-        }
-        })
+        console.log(newComment);
+        props.commentState((prevState) => {
+          return {
+            topic: {
+              ...prevState.topic,
+              comments: [
+                ...prevState.topic.comments,
+                { ...newComment.comment, user_name: newComment.user_name },
+              ],
+            },
+          };
+        });
       });
   };
 
-
   return (
-    <> 
-    {postForm ? (
-    <Container component="main" maxWidth="lg">
-        <Button onClick={displayFormHanlder} variant="contained" color="primary">
-                Hide comment Form
-        </Button>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          {/* <LockOutlinedIcon /> */}
-          <PostAddIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Create A New Comment
-        </Typography>
-        <form onSubmit={handlePostCreation} className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="comment"
-            label="comment"
-            name="comment"
-            autoComplete="comment"
-            autoFocus
-            onChange={changeHandler}
-            value={state.comment}
-          />
-          
-    
+    <>
+      {props.postForm ? (
+        <Container component="main" maxWidth="lg">
           <Button
-            type="submit"
-            fullWidth
+            onClick={displayFormHandler}
             variant="contained"
             color="primary"
-            className={classes.submit}
           >
-            Create Comment
+            Hide comment Form
           </Button>
-        </form>
-      </div>
-    </Container>
-    ) : (
-        <Button onClick={displayFormHanlder} variant="contained" color="primary">
-            New Comment
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              {/* <LockOutlinedIcon /> */}
+              <PostAddIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              {props.comment.id ? "Edit Comment" : "Create A New Comment"}
+            </Typography>
+            <Typography component="h1" className={classes.warning}>
+              {!token && "Only logged in users can create posts!"}
+            </Typography>
+            <form
+              onSubmit={
+                props.comment.id ? handleCommentEdit : handleCommentCreation
+              }
+              className={classes.form}
+              noValidate
+            >
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="comment"
+                label="comment"
+                name="comment"
+                autoComplete="comment"
+                autoFocus
+                onChange={changeHandler}
+                value={props.comment.content}
+              />
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                disabled={!token}
+              >
+                {props.comment.id ? "Edit Comment" : "Create Comment"}
+              </Button>
+            </form>
+          </div>
+        </Container>
+      ) : (
+        <Button
+          onClick={displayFormHandler}
+          variant="contained"
+          color="primary"
+        >
+          New Comment
         </Button>
-    )}
- </>
+      )}
+    </>
   );
 }
