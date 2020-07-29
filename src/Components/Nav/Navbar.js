@@ -25,10 +25,10 @@ export default function Navbar(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  const user_name = JSON.parse(window.localStorage.getItem('sojohub')) ? JSON.parse(window.localStorage.getItem('sojohub')).name : null  
+  const user_name = JSON.parse(window.localStorage.getItem("sojohub"))
+    ? JSON.parse(window.localStorage.getItem("sojohub")).name
+    : null;
 
-  
-  
   const handleLogout = () => {
     window.localStorage.setItem("sojohub", null);
     // return <Redirect to="/login" />;
@@ -45,7 +45,8 @@ export default function Navbar(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
-            component={Link} to={user_name ? "/" : "/login"}
+            component={Link}
+            to={user_name ? "/" : "/login"}
           >
             <Hidden mdUp>
               <MenuIcon />
@@ -66,8 +67,17 @@ export default function Navbar(props) {
                 <Button color="inherit" component={Link} to="/interviews">
                   My Interviews
                 </Button>
-                <Button color="inherit" onClick={handleLogout} to="/logout">
+
+                <Button
+                  color="inherit"
+                  onClick={handleLogout}
+                  className={classes.right}
+                  to="/logout"
+                >
                   Logout
+                </Button>
+                <Button color="inherit" onClick={handleLogout} to="/logout">
+                  {user_name}
                 </Button>
               </>
             ) : (
