@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Comment from "./Comment";
 import NewComment from "./NewComment";
+
+
 export default function ThreadDetail(props) {
   const [state, setState] = useState({});
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function ThreadDetail(props) {
   return (
     <div>
       <h1>{state.topic && state.topic.title}</h1>
-      <NewComment topic_id={props.match.params.id}/>
+      <NewComment topic_id={props.match.params.id} commentState={setState}/>
       {state.topic && renderComment()}
     </div>
   );

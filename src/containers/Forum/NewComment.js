@@ -70,8 +70,15 @@ export default function NewComment(props) {
       .then((r) => r.json())
       .then((newComment) => {
         console.log(newComment)
+        props.commentState(prevState => {
+          return {topic: {
+              ...prevState.topic, comments:[...prevState.topic.comments, {...newComment.comment, user_name: newComment.user_name}]
+          }
+        }
+        })
       });
   };
+
 
   return (
     <> 

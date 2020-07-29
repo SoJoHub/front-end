@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+#calendar {
+  background-color: white;
+  z-index: -1;
+  /* position: relative; */
+}
+
+.fc .fc-media-screen .fc-direction-ltr .fc-theme-standard {
+  z-index: -1;
+  /* position: relative; */
+}

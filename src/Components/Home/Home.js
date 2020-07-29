@@ -3,8 +3,26 @@ import Interviews from "./Interviews";
 import ApplicationsList from "../ApplicationsList";
 import { useState, useEffect } from "react";
 import Stats from "./Stats";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
 const Home = () => {
+  const classes = useStyles();
+
   const [applications, setApplications] = useState([]);
   useEffect(() => {
     let user = window.localStorage.getItem("sojohub");
@@ -52,7 +70,7 @@ const Home = () => {
 
     const offers = applications.reduce((a, b) => {
       if (b.status === "recieved offer") {
-        return a += 1;
+        return (a += 1);
       } else {
         return a;
       }
@@ -60,30 +78,64 @@ const Home = () => {
 
     const rejections = applications.reduce((a, b) => {
       if (b.status === "rejected") {
-        return a += 1;
+        return (a += 1);
       } else {
         return a;
       }
     }, 0);
-  
+
     const noResponse = applications.reduce((a, b) => {
-      if (b.status === "applied" || b.status === "no response" ) {
-        return a += 1;
+      if (b.status === "applied" || b.status === "no response") {
+        return (a += 1);
       } else {
         return a;
       }
     }, 0);
 
-
-    return {interviews: interviews, jobsApplied: jobsApplied, offers: offers, rejections: rejections, noResponse: noResponse}
+    return {
+      interviews: interviews,
+      jobsApplied: jobsApplied,
+      offers: offers,
+      rejections: rejections,
+      noResponse: noResponse,
+    };
   };
   console.log(getStats());
   return (
-    <div>
-      
-      {<Interviews interviews={getInterviews()} />}
-      {<ApplicationsList applications={applications} />}
-      {<Stats stat={getStats()}/>}
+    <div className={classes.root}>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <Typography variant="h4">Dashboard</Typography>
+          </Paper>
+        </Grid>
+      </Container>
+      <Container maxWidth="lg">
+        <Grid container spacing={0}>
+          {/* <Grid item xs={12}> */}
+          <Grid item xs={8}>
+            <Paper className={classes.paper}>
+              <Typography variant="h4">Stats</Typography>
+
+              {<Stats stat={getStats()} />}
+            </Paper>
+          </Grid>
+          <Grid item xs={4}>
+            <Paper className={classes.paper}>
+              <Typography variant="h4">Interviews</Typography>
+              {<Interviews interviews={getInterviews()} />}
+            </Paper>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <Typography variant="h4">Recent Applications</Typography>
+            {<ApplicationsList applications={applications} />}
+          </Paper>
+        </Grid>
+        {/* </Grid> */}
+      </Container>
     </div>
   );
 };
