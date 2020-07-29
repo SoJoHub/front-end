@@ -17,7 +17,11 @@ const JobListingDetail = (props) => {
     return (
         <div>
             <h3>Job Listing Detail</h3>
-            <p>{props.application.job_listing && props.application.job_listing.company}</p>
+            <p>Company: {props.application.job_listing && props.application.job_listing.company}</p>
+            <p>Job Title: {props.application.job_listing && props.application.job_listing.title}</p>
+            <p>Location: {props.application.job_listing && props.application.job_listing.location}</p>
+            <p>Description: {props.application.job_listing && props.application.job_listing.description}</p>
+            <p>Job Listing URL: {props.application.job_listing && props.application.job_listing.listing_url}</p>
         </div>
     )
 }

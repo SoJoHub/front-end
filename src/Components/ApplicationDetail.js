@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",
       color: theme.palette.text.secondary,
     },
+    title: {
+      marginBottom: "10px",
+    },
   }));
 
 const ApplicationDetail = (props) => {
@@ -43,24 +46,25 @@ const ApplicationDetail = (props) => {
     console.log(state)
     return (
         <div>
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" className={classes.title}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
                         <Typography variant="h4">Application Details</Typography>
                     </Paper>
                 </Grid>
-                <Grid item xs={8}>
+            </Container>
+            <Grid container spacing="2">
+                <Grid item xs={6}>
                     <Paper className={classes.paper}>
                         <JobListingDetail application={state}/>
-                        {/* <JobListingDetail /> */}
                     </Paper>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={6}>
                     <Paper className={classes.paper}>
                         <Checklist />
                     </Paper>
                 </Grid>
-            </Container>
+            </Grid>
         </div>
     )
 }
