@@ -24,9 +24,11 @@ const Home = () => {
   const classes = useStyles();
 
   const [applications, setApplications] = useState([]);
+  //credentials
+  let user = window.localStorage.getItem("sojohub");
+  const token = JSON.parse(user).userToken;
+  const username = JSON.parse(user).name;
   useEffect(() => {
-    let user = window.localStorage.getItem("sojohub");
-    const token = JSON.parse(user).userToken;
     const payLoad = {
       method: "GET",
       headers: {
@@ -50,6 +52,7 @@ const Home = () => {
       }
     });
   };
+  // debugger;
 
   // const getApplications = () => {
   //   return applications.map((job) => {
@@ -108,6 +111,8 @@ const Home = () => {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <Typography variant="h4">Dashboard</Typography>
+            <Typography variant="p"> Welcome </Typography>
+            {username}
           </Paper>
         </Grid>
       </Container>
