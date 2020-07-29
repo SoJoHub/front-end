@@ -33,13 +33,18 @@ class ApplicationsContainer extends React.Component {
     });
   };
 
+  deleteApplication = (application) => {};
+
   render() {
     console.log(this.state);
     return (
       <div>
         <h1> My Applications </h1>
         <AddApplication addApplication={this.addApplication} />
-        <ApplicationsList applications={this.state.applications} />
+        <ApplicationsList
+          applications={this.state.applications}
+          deleteApplication={this.deleteApplication}
+        />
       </div>
     );
   }
