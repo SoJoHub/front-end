@@ -63,7 +63,6 @@ const Home = () => {
   const getStats = () => {
     const jobsApplied = applications.length;
     const interviews = applications.reduce((a, b) => {
-      console.log(b.interviews.length > 0);
       if (b.interviews.length > 0) {
         return (a = a + 1);
       } else {
@@ -72,7 +71,7 @@ const Home = () => {
     }, 0);
 
     const offers = applications.reduce((a, b) => {
-      if (b.status === "recieved offer") {
+      if (b.status === "accepted") {
         return (a += 1);
       } else {
         return a;
@@ -88,7 +87,7 @@ const Home = () => {
     }, 0);
 
     const noResponse = applications.reduce((a, b) => {
-      if (b.status === "applied" || b.status === "no response") {
+      if (b.status === "applied") {
         return (a += 1);
       } else {
         return a;

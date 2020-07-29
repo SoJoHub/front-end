@@ -191,13 +191,13 @@ export default function AddApplication(props) {
                   value={state.status}
                   onChange={changeHandler}
                 >
-                  <MenuItem value="Applied">Applied</MenuItem>
-                  <MenuItem value="Selected for Interview">
+                  <MenuItem value="applied">Applied</MenuItem>
+                  <MenuItem value="selected for Interview">
                     Selected for Interview
                   </MenuItem>
-                  <MenuItem value="Interviewed">Interviewed</MenuItem>
-                  <MenuItem value="Accepted">Received Offer</MenuItem>
-                  <MenuItem value="Rejected">Rejected</MenuItem>
+                  <MenuItem value="interviewed">Interviewed</MenuItem>
+                  <MenuItem value="accepted">Received Offer</MenuItem>
+                  <MenuItem value="rejected">Rejected</MenuItem>
                 </Select>
               </FormControl>
               <br></br>
