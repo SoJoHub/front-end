@@ -68,19 +68,10 @@ export default function NewComment(props) {
           };
         });
       });
+    props.setComment({});
+    props.setPostForm(false);
   };
-  // return {
-  //   topic: {
-  //     ...prevState.topic,
-  //     comments: [
-  //       ...prevState.topic.comments,
-  //       { ...updatedComment, content: updatedComment.content },
-  //     ],
-  //       },
-  //     };
-  //   });
-  // });
-  // };
+
   const displayFormHandler = () => {
     props.setPostForm((prevState) => {
       return !prevState;
@@ -125,6 +116,8 @@ export default function NewComment(props) {
           };
         });
       });
+    props.setComment({});
+    props.setPostForm(false);
   };
 
   return (
