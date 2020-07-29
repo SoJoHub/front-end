@@ -1,5 +1,6 @@
 import React from "react";
 import Calendar from "./Calendar.js";
+import AddInterview from './AddInterview.js'
 
 export default class InterviewsContainer extends React.Component {
   state = {
@@ -27,6 +28,13 @@ export default class InterviewsContainer extends React.Component {
     }
   }
 
+
+  addInterview = (interview) => {
+    this.setState({
+      interviews: [...this.state.interviews, interview],
+    });
+  };
+
   handleDelete = (deletedInterview) => {
     const updatedInterviews = this.state.interviews.filter(
       (interview) => interview.id !== deletedInterview.id
@@ -50,10 +58,14 @@ export default class InterviewsContainer extends React.Component {
 
   render() {
     return (
-      <Calendar
-        interviews={this.state.interviews}
-        handleDelete={this.handleDelete}
-      />
+      <div>
+        <h1>Interviews Calendar</h1>
+        <AddInterview addInterview={this.addInterview}/>
+        <Calendar
+          interviews={this.state.interviews}
+          handleDelete={this.handleDelete}
+        />
+      </div>
     );
   }
 }

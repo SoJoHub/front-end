@@ -3,6 +3,7 @@ import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Navbar from "./Components/Nav/Navbar";
 import ApplicationsContainer from "./containers/ApplicationsContainer";
+import ApplicationDetail from "./Components/ApplicationDetail";
 import InterviewsContainer from "./Components/Interviews/InterviewsContainer";
 import SignUp from "./Components/Signup/SignUp";
 import Signin from "./Components/Signin/Signin";
@@ -11,6 +12,8 @@ import ThreadDetail from "./containers/Forum/ThreadDetail";
 import Forum from "./containers/Forum/Forum";
 import Home from "./Components/Home/Home";
 import homeTest from "./Components/Home/homeTest";
+
+
 class App extends React.Component {
   state = {
     loggedIn: window.localStorage.getItem("sojohub"),
@@ -46,6 +49,11 @@ class App extends React.Component {
                   exact
                   path="/Applications"
                   component={ApplicationsContainer}
+                />
+                <Route
+                  exact
+                  path="/Applications/:id"
+                  render={(props) => <ApplicationDetail {...props} />}
                 />
                 <Route exact path="/Interviews" component={InterviewsContainer} />
               </>
