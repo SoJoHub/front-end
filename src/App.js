@@ -47,7 +47,11 @@ class App extends React.Component {
                   path="/Applications"
                   component={ApplicationsContainer}
                 />
-                <Route exact path="/Interviews" component={InterviewsContainer} />
+                <Route
+                  exact
+                  path="/Interviews"
+                  component={InterviewsContainer}
+                />
               </>
             ) : (
               <>
