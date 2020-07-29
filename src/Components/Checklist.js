@@ -18,8 +18,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function CheckboxList() {
+export default function CheckboxList(props) {
     const checklist = ["send follow up", "send cover letter", "email recruiter"]
+    let user = window.localStorage.getItem("sojohub");
+    const token = JSON.parse(user).userToken;
+
+    console.log(props.todos)
+
+
+    // const fetchTodos = () => {
+    //     fetch('http://localhost:3000/todos', {
+    //         method: 'GET',
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Authorization": token,
+    //             Accept: "application/json",
+    //         }
+    //     })
+    //         .then(r => r.json)
+    //         .then(console.log)
+    // }  
+    // {props.application && fetchTodos()}
+
     const classes = useStyles();
     const [checked, setChecked] = React.useState([0]);
 
@@ -29,31 +49,34 @@ export default function CheckboxList() {
 
         if (currentIndex === -1) {
             newChecked.push(value);
+            value.complete = !value.complete
         } else {
             newChecked.splice(currentIndex, 1);
+            value.complete = !value.complete
         }
 
         setChecked(newChecked);
+        props.handleUpdate(newChecked)
     };
 
     return (
         <List className={classes.root}>
             <h3>To Do List</h3>
-            {checklist.map((value) => {
-                const labelId = `checkbox-list-label-${value}`;
+            {props.todos && props.todos.map((value) => {
+                const labelId = `checkbox-list-label-${value.task}`;
 
                 return (
-                    <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
+                    <ListItem key={value.task} role={undefined} dense button onClick={handleToggle(value)}>
                         <ListItemIcon>
                         <Checkbox
                             edge="start"
-                            checked={checked.indexOf(value) !== -1}
+                            checked={value.checked}
                             tabIndex={-1}
                             disableRipple
                             inputProps={{ 'aria-labelledby': labelId }}
                         />
                         </ListItemIcon>
-                        <ListItemText id={labelId} primary={`${value}`} />
+                        <ListItemText id={labelId} primary={`${value.task}`} />
                         <ListItemSecondaryAction>
                         <IconButton edge="end" aria-label="comments">
                             <CommentIcon />

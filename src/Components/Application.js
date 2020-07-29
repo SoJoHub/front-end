@@ -10,7 +10,7 @@ const Application = (props) => {
     history.push(`/applications/${props.application.id}`);
   };
 
-  console.log(props.application);
+  // console.log(props.application);
   return (
     <div style={{ padding: 14 }} className="App">
       {/* <h1>My Applications</h1> */}

@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const ApplicationDetail = (props) => {
-    console.log(props)
+    // console.log(props)
 
     const [state, setState] = useState({});
+    let user = window.localStorage.getItem("sojohub");
+    const token = JSON.parse(user).userToken;
     useEffect(() => {
-        let user = window.localStorage.getItem("sojohub");
-        const token = JSON.parse(user).userToken;
         fetch(`http://localhost:3000/applications/${props.match.params.id}`, {
             method: 'GET',
             headers: {
@@ -41,6 +41,23 @@ const ApplicationDetail = (props) => {
                 setState(applicationObj);
             });
     }, []);
+
+    const handleUpdate = (todos) => {
+        setState({
+            todos: todos
+        })
+
+        fetch(`http://localhost:3000/applications/${props.match.params.id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token,
+                Accept: "application/json",
+            }
+        })
+            .then(r => r.json())
+            .then(console.log)
+    }
 
     const classes = useStyles();
     console.log(state)
@@ -61,7 +78,7 @@ const ApplicationDetail = (props) => {
                 </Grid>
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
-                        <Checklist />
+                        <Checklist todos={state.todos} handleUpdate={this.handleUpdate}/>
                     </Paper>
                 </Grid>
             </Grid>
