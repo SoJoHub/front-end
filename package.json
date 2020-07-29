@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^7.1.2",
     "fontsource-roboto": "^2.2.6",
     "react": "^16.13.1",
+    "react-actioncable-provider": "^2.0.0",
     "react-dom": "^16.13.1",
     "react-google-charts": "^3.0.15",
     "react-material-ui-form-validator": "^2.1.0",
