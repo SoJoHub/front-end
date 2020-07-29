@@ -1,9 +1,10 @@
 import React from "react";
 import Interview from "./Interview";
 const Interviews = (props) => {
-  console.log(props.interviews);
+  // const a = props.interviews;
+  // debugger;
   const renderInterview = () => {
-    return props.interviews.map((interview) => {
+    return props.interviews.slice(0, 3).map((interview) => {
       return interview.interviews.map((int) => {
         return (
           <Interview
@@ -16,7 +17,19 @@ const Interviews = (props) => {
     });
   };
 
-  return <div>{renderInterview()}</div>;
+  return (
+    <div>
+      {props.interviews.length > 0 ? (
+        renderInterview()
+      ) : (
+        <div>
+          <Interview key="1" interview="Upcoming" company="Dream Company" />
+          <Interview key="2" interview="Upcoming" company="Dream Company" />
+          <Interview key="3" interview="Upcoming" company="Dream Company" />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Interviews;

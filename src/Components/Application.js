@@ -1,6 +1,7 @@
 import React from "react";
 import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const Application = (props) => {
   const history = useHistory();
@@ -32,9 +33,9 @@ const Application = (props) => {
             <p style={{ textAlign: "left" }}>
               Status: {props.application.status}
             </p>
-            <button onClick={handleClick} style={{ textAlign: "right" }}>
-              View Details
-            </button>
+            <Button onClick={handleClick} variant="contained" color="primary">
+                View Details
+            </Button>
           </Grid>
         </Grid>
         <Divider variant="fullWidth" style={{ margin: "30px 0" }} />
