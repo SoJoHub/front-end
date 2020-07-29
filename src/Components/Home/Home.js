@@ -146,3 +146,4 @@ const Home = () => {
 };
 
 export default Home;
+// if local storage is empty redirect to homepage

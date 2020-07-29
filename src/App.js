@@ -13,7 +13,6 @@ import Forum from "./containers/Forum/Forum";
 import Home from "./Components/Home/Home";
 import homeTest from "./Components/Home/homeTest";
 
-
 class App extends React.Component {
   state = {
     loggedIn: window.localStorage.getItem("sojohub"),
@@ -55,7 +54,11 @@ class App extends React.Component {
                   path="/Applications/:id"
                   render={(props) => <ApplicationDetail {...props} />}
                 />
-                <Route exact path="/Interviews" component={InterviewsContainer} />
+                <Route
+                  exact
+                  path="/Interviews"
+                  component={InterviewsContainer}
+                />
               </>
             ) : (
               <>

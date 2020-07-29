@@ -34,6 +34,7 @@ export default function ThreadDetail(props) {
   return (
     <div>
       <h1>{state.topic && state.topic.title}</h1>
+      <p>{state.topic && state.topic.description}</p>
       <NewComment
         topic_id={props.match.params.id}
         commentState={setState}
