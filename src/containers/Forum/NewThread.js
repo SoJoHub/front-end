@@ -60,43 +60,29 @@ export default function NewThread(props) {
 
   const handlePostCreation = (e) => {
     e.preventDefault();
-    let user = window.localStorage.getItem("sojohub");
-    const token = JSON.parse(user).userToken;
-
-    fetch("http://localhost:3000/topics", {
-      method: "POST",
-      headers: token,
-      body: JSON.stringify(props.formState),
-    });
-    // this.setState({ title: "" });
-    // console.log(props.formState);
+  const payLoad = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+      Accept: "application/json",
+    },
+    body: JSON.stringify(props.formState),
   };
+  console.log(props.formState);
+  fetch("http://localhost:3000/topics", payLoad)
+    .then((r) => r.json())
+    .then((newPost) => {
+      console.log(newPost);
+      props.renderNewPost((prevState) => [newPost, ...prevState]);
+    });
+  props.setformState({ topic: "", description: "" });
+  props.setPostForm(false);
+  }
 
-  // let user = window.localStorage.getItem("sojohub");
-  // const token = JSON.parse(user).userToken;
-  // const payLoad = {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: token,
-  //     Accept: "application/json",
-  //   },
-  //   body: JSON.stringify(props.formState),
-  // };
-  // console.log(props.formState);
-  // fetch("http://localhost:3000/topics", payLoad)
-  //   .then((r) => r.json())
-  //   .then((newPost) => {
-  //     console.log(newPost);
-  //     props.renderNewPost((prevState) => [newPost, ...prevState]);
-  //   });
-  // props.setformState({ topic: "", description: "" });
-  // props.setPostForm(false);
 
   const handlePostEdit = (e) => {
     e.preventDefault();
-    // let user = window.localStorage.getItem("sojohub");
-    // const token = JSON.parse(user).userToken;
     const payLoad = {
       method: "PATCH",
       headers: {

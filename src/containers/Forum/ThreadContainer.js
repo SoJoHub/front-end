@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Thread from "./Thread";
 import NewThread from "./NewThread";
-import { ActionCable } from "react-actioncable-provider";
 
 export default function TheadContainer() {
   const [state, setState] = useState([]);
@@ -45,10 +44,6 @@ export default function TheadContainer() {
   };
   return (
     <div>
-      <ActionCable
-        channel={{ channel: "TopicChannel" }}
-        onReceived={setState}
-      />
       <NewThread
         postForm={postForm}
         renderNewPost={setState}
