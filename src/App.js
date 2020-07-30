@@ -12,6 +12,7 @@ import ThreadDetail from "./containers/Forum/ThreadDetail";
 import Forum from "./containers/Forum/Forum";
 import Home from "./Components/Home/Home";
 import homeTest from "./Components/Home/homeTest";
+import ConversationsList from "./Components/ConversationList";
 
 class App extends React.Component {
   state = {
@@ -30,6 +31,7 @@ class App extends React.Component {
         {/* allows for cross-browser support by resetting default css styling */}
         <CssBaseline />
         <div className="App">
+          {/* <ConversationsList /> */}
           <Navbar
             loggedIn={this.state.loggedIn}
             setLoginState={this.setLoginState}
