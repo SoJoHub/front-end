@@ -45,42 +45,43 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AddInterview(props) {
+export default function EditInterview(props) {
     const classes = useStyles();
 
-    const [interviewForm, setInterviewForm] = useState(false);
+    const [interviewForm, setInterviewForm] = useState(true);
+
     const [state, setState] = useState({
-        date: "",
-        interviewer: "",
-        location: "",
-        notes: "",
-        complete: "",
+        date: props.interviewObj.date,
+        interviewer: props.interviewObj.interviewer,
+        location: props.interviewObj.location,
+        notes: props.interviewObj.notes,
+        complete: props.interviewObj.complete,
         // applications: 
-        application_id: ""
+        application_id: props.interviewObj.application_id
     });
 
     const [applications, setApplication] = useState([])
 
-    useEffect(() => { 
-      let user = window.localStorage.getItem("sojohub");
-      if (user) {
-        const token = JSON.parse(user).userToken;
-        fetch("http://localhost:3000/applications", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: token,
-          },
-        })
-          .then((resp) => resp.json())
-          .then((applications) => {
-            setApplication({
-              applications: applications,
-            });
-          });
-      }
-    }, [])
+    // useEffect(() => { 
+    //   let user = window.localStorage.getItem("sojohub");
+    //   if (user) {
+    //     const token = JSON.parse(user).userToken;
+    //     fetch("http://localhost:3000/applications", {
+    //       method: "GET",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //         Authorization: token,
+    //       },
+    //     })
+    //       .then((resp) => resp.json())
+    //       .then((applications) => {
+    //         setApplication({
+    //           applications: applications,
+    //         });
+    //       });
+    //   }
+    // }, [])
   
 
 
@@ -100,12 +101,12 @@ export default function AddInterview(props) {
         }));
       };
     
-    const handleInterviewCreation = (e) => {
+    const handleInterviewEdit = (e) => {
         e.preventDefault();
         let user = window.localStorage.getItem("sojohub");
         const token = JSON.parse(user).userToken;
         const payLoad = {
-            method: "POST",
+            method: "PATCH",
             headers: {
             "Content-Type": "application/json",
             Authorization: token,
@@ -113,10 +114,12 @@ export default function AddInterview(props) {
             },
             body: JSON.stringify(state),
         };
-        fetch("http://localhost:3000/interviews", payLoad)
+        fetch(`http://localhost:3000/interviews/${props.interviewObj.id}`, payLoad)
             .then((r) => r.json())
             .then((newInterview) => {
-                props.addInterview(newInterview);
+                // props.addInterview(newInterview);
+                console.log(newInterview)
+                props.editInterview(newInterview)
             });
     };
 
@@ -135,30 +138,12 @@ export default function AddInterview(props) {
           <PostAddIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          {props.postId ? "Edit Interview" : "Create A New Interview"}
+          Edit Interview 
         </Typography>
         {/* <Typography component="h1" className={classes.warning}>
           {!token && "Only logged in users can create interviews!"}
         </Typography> */}
-        <form onSubmit={handleInterviewCreation} className={classes.form} noValidate>
-            {/* <FormControl className={classes.formControl}>
-                <InputLabel id="application-label">Application</InputLabel>
-                <Select
-                    id="application"
-                    labelId="Status"
-                    name="application"
-                    value={state.application}
-                    onChange={changeHandler}
-                >
-                    <MenuItem value="Applied">Applied</MenuItem>
-                    <MenuItem value="Selected for Interview">
-                        Selected for Interview
-                    </MenuItem>
-                    <MenuItem value="Interviewed">Interviewed</MenuItem>
-                    <MenuItem value="Accepted">Received Offer</MenuItem>
-                    <MenuItem value="Rejected">Rejected</MenuItem>
-                </Select>
-            </FormControl> */}
+        <form onSubmit={handleInterviewEdit} className={classes.form} noValidate>
             <TextField
                 id="date"
                 label="date"
@@ -168,25 +153,10 @@ export default function AddInterview(props) {
                 InputLabelProps={{
                     shrink: true,
                 }}
-                value={state.date}
+                value={state.date && state.date.split('T')[0]}
             />
-                <br/>
 
-            <FormControl className={classes.formControl}>
-                <InputLabel id="status-label">Select Job</InputLabel>
-                <Select
-                  id="application_id"
-                  labelId="application_id"
-                  name="application_id"
-                  value={state.application_id}
-                  onChange={changeHandler}
-                >
-                {applications.applications.map(item => <MenuItem value={item.id}>{item.job_listing.company}</MenuItem>)}
-
-                </Select>
-              </FormControl>
-
-                <br/>
+            <br/>
                 <FormControl className={classes.formControl}>
                 <InputLabel id="status-label">Completed</InputLabel>
                 <Select
@@ -201,7 +171,6 @@ export default function AddInterview(props) {
 
                 </Select>
               </FormControl>
-
             <TextField
                 variant="outlined"
                 margin="normal"
@@ -265,7 +234,7 @@ export default function AddInterview(props) {
           variant="contained"
           color="primary"
         >
-          Add New Interview
+          Edit Interview
         </Button>
     )}
  </>

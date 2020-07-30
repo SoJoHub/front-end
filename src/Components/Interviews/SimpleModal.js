@@ -75,7 +75,12 @@ export default function SimpleModal(props) {
         <br></br>
         Notes: {props.selectedInterview.notes}
       </p>
-      <button>Edit Interview</button>
+      <button
+      onClick={() => {
+          props.handleEdit(props.selectedInterview);
+          props.toggle();
+        }}
+      >Edit Interview</button>
       <button
         onClick={() => {
           props.handleDelete(props.selectedInterview);
