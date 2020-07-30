@@ -13,7 +13,7 @@ import React from 'react';
 
 const JobListingDetail = (props) => {
     // const classes = useStyles();
-    console.log(props.application.job_listing)
+    // console.log(props.application.job_listing)
     return (
         <div>
             <h3>Job Listing Detail</h3>

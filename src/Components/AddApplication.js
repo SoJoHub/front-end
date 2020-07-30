@@ -6,7 +6,7 @@
 
 // export default AddApplication;
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -48,6 +48,7 @@ export default function AddApplication(props) {
   const classes = useStyles();
 
   const [applicationForm, setApplicationForm] = useState(false);
+  const [isEditForm, setIsEditForm] = useState(false)
   const [state, setState] = useState({
     title: "",
     company: "",
@@ -57,6 +58,23 @@ export default function AddApplication(props) {
     status: "",
     date_applied: "",
   });
+
+
+  useEffect(() => {
+    console.log(props.application.job_listing)
+    if(props.application.job_listing){
+        setIsEditForm(true)
+        setState({
+          title: props.application.job_listing.title,
+          company: props.application.job_listing.company,
+          location: props.application.job_listing.location,
+          description: props.application.job_listing.description,
+          listingUrl: props.application.job_listing.listing_url,
+          status: props.application.status,
+          dateApplied: props.application.date_applied
+        })
+    }
+  },[])
 
   const displayFormHandler = () => {
     setApplicationForm((prevState) => {
@@ -71,6 +89,11 @@ export default function AddApplication(props) {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const handleApplicationUpdate = (e) => {
+    e.preventDefault()
+    props.handleApplicationUpdate(state)
+  }
 
   const handleApplicationCreation = (e) => {
     e.preventDefault();
@@ -110,10 +133,10 @@ export default function AddApplication(props) {
               <PostAddIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Create A New Application
+            {isEditForm ? "Edit Application" : "Create A New Application"}
             </Typography>
             <form
-              onSubmit={handleApplicationCreation}
+              onSubmit={isEditForm ? handleApplicationUpdate : handleApplicationCreation}
               className={classes.form}
               noValidate
             >
@@ -210,7 +233,7 @@ export default function AddApplication(props) {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                value={state.date_applied}
+                value= {state.date_applied ? state.date_applied.split("T")[0] : null}
               />
 
               <Button
@@ -229,9 +252,9 @@ export default function AddApplication(props) {
         <Button
           onClick={displayFormHandler}
           variant="contained"
-          color="primary"
+          color="default"
         >
-          Add New Application
+          {isEditForm ? "Edit Application" : "Add New Application"}
         </Button>
       )}
     </>

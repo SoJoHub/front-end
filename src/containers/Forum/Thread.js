@@ -11,6 +11,7 @@ import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline",
   },
   button: {
-    margin: "1px"
+    margin: "1px",
   }
 }));
 
@@ -94,21 +95,22 @@ export default function Thread(props) {
           <> 
           <Button
             variant="contained"
-            color="secondary"
+            color="default"
+            className={classes.button}
+            startIcon={<EditIcon />}
+            onClick={editThread}
+            >
+            Edit
+          </Button>
+          <br></br>
+          <Button
+            variant="contained"
+            color="default"
             className={classes.button}
             startIcon={<DeleteIcon />}
             onClick={deleteThread}
             >
             Delete
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            startIcon={<DeleteIcon />}
-            onClick={editThread}
-            >
-            Edit
           </Button>
           </>
           }

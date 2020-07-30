@@ -1,6 +1,10 @@
 import React from "react";
 import AddApplication from "../Components/AddApplication";
 import ApplicationsList from "../Components/ApplicationsList";
+import { flexbox, flex } from '@material-ui/system';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+
 
 class ApplicationsContainer extends React.Component {
   state = {
@@ -33,13 +37,22 @@ class ApplicationsContainer extends React.Component {
     });
   };
 
+  deleteApplication = (application) => {};
+
   render() {
     console.log(this.state);
     return (
       <div>
-        <h1> My Applications </h1>
-        <AddApplication addApplication={this.addApplication} />
-        <ApplicationsList applications={this.state.applications} />
+        <Container maxWidth="lg">
+          <h1 className={"app-cont-title"}> My Applications </h1>
+          <AddApplication application={{}} addApplication={this.addApplication} />
+          <Box>
+            <ApplicationsList
+              applications={this.state.applications}
+              deleteApplication={this.deleteApplication}
+            />
+          </Box>
+        </Container>
       </div>
     );
   }
