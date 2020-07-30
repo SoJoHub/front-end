@@ -31,15 +31,7 @@ const ApplicationDetail = (props) => {
     const [showEditForm, setShowEditForm] = useState(false); 
     // const [applcicationId, setApplicationId] = useState("");
 
-    const [editState, setEditState] = useState({
-      title: "",
-      company: "",
-      location: "",
-      description: "",
-      listingUrl: "",
-      status: "",
-      dateApplied: "",
-    });
+    const [editState, setEditState] = useState("");
 
     let user = window.localStorage.getItem("sojohub");
     const token = JSON.parse(user).userToken;
@@ -55,25 +47,32 @@ const ApplicationDetail = (props) => {
             .then((r) => r.json())
             .then((applicationObj) => {
                 setState(applicationObj);
+                console.log(applicationObj)
             });
     }, []);
 
-    const handleUpdate = (todos) => {
-        setState({
-            todos: todos
-        })
+    const handleUpdate = (todo) => {
+      // console.log(todo)
+      // console.log(state)
+      //   setState({
+      //       todo: todo
+      //   })
+      console.log(todo)
 
-        fetch(`http://localhost:3000/applications/${props.match.params.id}`, {
+        fetch(`http://localhost:3000/todos/${todo.id}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token,
                 Accept: "application/json",
-            }
+            },
+            body: JSON.stringify(todo)
         })
             .then(r => r.json())
             .then(console.log)
     }
+
+
 
 
     const toggleEditForm = () => {
@@ -89,7 +88,8 @@ const ApplicationDetail = (props) => {
       })
     }
 
-    const editApplication = () => {
+    const handleApplicationUpdate = (obj) => {
+     
       fetch(`http://localhost:3000/applications/${props.match.params.id}`, {
         method: "PATCH",
         headers: {
@@ -97,9 +97,11 @@ const ApplicationDetail = (props) => {
           Authorization: token,
           Accept: "application/json",
         },
+        body: JSON.stringify(obj)
       })
         .then((r) => r.json())
         .then(updatedApplication => {
+          console.log(updatedApplication)
           setState(updatedApplication)
         })
     }
@@ -137,7 +139,7 @@ const ApplicationDetail = (props) => {
                     </Paper>
                 </Grid>
             </Container>
-            <ApplicationForm />
+           {state.job_listing && <ApplicationForm handleApplicationUpdate ={handleApplicationUpdate} application={state}/>}
             <Grid container spacing="2">
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
@@ -149,7 +151,7 @@ const ApplicationDetail = (props) => {
                 </Grid>
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
-                        <Checklist todos={state.todos} /*handleUpdate={this.handleUpdate}*//>
+                        <Checklist todos={state.todos} handleUpdate={handleUpdate}/>
                     </Paper>
                 </Grid>
             </Grid>

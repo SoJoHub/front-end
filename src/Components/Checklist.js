@@ -56,7 +56,7 @@ export default function CheckboxList(props) {
         }
 
         setChecked(newChecked);
-        props.handleUpdate(newChecked)
+        props.handleUpdate(newChecked[1])
     };
 
     return (
@@ -70,10 +70,11 @@ export default function CheckboxList(props) {
                         <ListItemIcon>
                         <Checkbox
                             edge="start"
-                            checked={value.checked}
+                            checked={value.complete}
                             tabIndex={-1}
                             disableRipple
                             inputProps={{ 'aria-labelledby': labelId }}
+                            contentEditable={true}
                         />
                         </ListItemIcon>
                         <ListItemText id={labelId} primary={`${value.task}`} />
