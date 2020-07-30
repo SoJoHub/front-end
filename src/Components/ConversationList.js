@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { ActionCable } from "react-actioncable-provider";
 import { API_ROOT } from "../constants/index";
@@ -23,7 +21,7 @@ class ConversationsList extends React.Component {
     this.setState({ activeTopics: id });
   };
 
-  handleReceivedTopic= (response) => {
+  handleReceivedTopic = (response) => {
     const { topic } = response;
     this.setState({
       topics: [...this.state.topics, topic],
@@ -31,11 +29,10 @@ class ConversationsList extends React.Component {
   };
 
   handleReceivedComment = (response) => {
+    console.log("hiiiiii!", response);
     const { comment } = response;
     const topics = [...this.state.topics];
-    const topic = topics.find(
-      (topic) => topic.id === comment.topic_id
-    );
+    const topic = topics.find((topic) => topic.id === comment.topic_id);
     topic.comments = [...topic.comments, comment];
     this.setState({ topics });
   };
@@ -45,7 +42,7 @@ class ConversationsList extends React.Component {
     return (
       <div className="conversationsList">
         <ActionCable
-          channel={{ channel: "TopicsChannel" }}
+          channel={{ channel: "TopicChannel" }}
           onReceived={this.handleReceivedTopic}
         />
         {this.state.topics.length ? (
@@ -58,12 +55,7 @@ class ConversationsList extends React.Component {
         <ul>{mapTopics(topics, this.handleClick)}</ul>
         <NewConversationForm />
         {activeTopics ? (
-          <MessagesArea
-            topic={findActiveTopics(
-              topics,
-              activeTopics
-            )}
-          />
+          <MessagesArea topic={findActiveTopics(topics, activeTopics)} />
         ) : null}
       </div>
     );
@@ -75,9 +67,7 @@ export default ConversationsList;
 // helpers
 
 const findActiveTopics = (topics, activeTopics) => {
-  return topics.find(
-    (topic) => topic.id === activeTopics
-  );
+  return topics.find((topic) => topic.id === activeTopics);
 };
 
 const mapTopics = (topics, handleClick) => {

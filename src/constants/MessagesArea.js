@@ -18,10 +18,11 @@ export default MessagesArea;
 // helpers
 
 const orderedMessages = (comments) => {
+  console.log(comments);
   const sortedComments = comments.sort(
     (a, b) => new Date(a.created_at) - new Date(b.created_at)
   );
   return sortedComments.map((comment) => {
-    return <li key={comment.id}>{comment.text}</li>;
+    return <li key={comment.id}>{comment.content}</li>;
   });
 };

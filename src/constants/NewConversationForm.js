@@ -16,13 +16,15 @@ class NewConversationForm extends React.Component {
     e.preventDefault();
     let user = window.localStorage.getItem("sojohub");
     const token = JSON.parse(user).userToken;
-    
+
     fetch(`${API_ROOT}/topics`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(this.state),
     });
     this.setState({ title: "" });
+    console.log(this.state);
+    debugger;
   };
 
   render = () => {

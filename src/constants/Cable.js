@@ -11,7 +11,7 @@ const Cable = ({ topics, handleReceivedComment }) => {
           <ActionCable
             key={topic.id}
             channel={{
-              channel: "MessagesChannel",
+              channel: "CommentsChannel",
               topic: topic.id,
             }}
             onReceived={handleReceivedComment}
