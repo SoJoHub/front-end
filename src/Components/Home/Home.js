@@ -55,7 +55,7 @@ const Home = () => {
   // debugger;
 
   // const getApplications = () => {
-  //   return applications.map((job) => {
+  //   return applications.slice(0,4).map((job) => {
   //     return job.job_listing;
   //   });
   // };
@@ -76,7 +76,7 @@ const Home = () => {
       } else {
         return a;
       }
-    }, 0);
+    }, 0); 
 
     const rejections = applications.reduce((a, b) => {
       if (b.status === "rejected") {
