@@ -30,7 +30,7 @@ class App extends React.Component {
         {/* allows for cross-browser support by resetting default css styling */}
         <CssBaseline />
         <div className="App">
-          <ConversationsList />
+          {/* <ConversationsList /> */}
           <Navbar
             loggedIn={this.state.loggedIn}
             setLoginState={this.setLoginState}

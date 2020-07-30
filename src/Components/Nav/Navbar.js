@@ -76,9 +76,7 @@ export default function Navbar(props) {
                 >
                   Logout
                 </Button>
-                <Button color="inherit" onClick={handleLogout} to="/logout">
-                  {user_name}
-                </Button>
+                <Button color="inherit">{user_name}</Button>
               </>
             ) : (
               <>
