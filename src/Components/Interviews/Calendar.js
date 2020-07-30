@@ -11,6 +11,16 @@ export default class Calendar extends React.Component {
     selectedInterview: "",
   };
 
+  componentDidUpdate() {
+    console.log(this.props.updatedInterview)
+    // if(this.state.selectedInterview && this.props.updatedInterview.id == this.state.selectedInterview.id){
+    //   this.setState((prevState) => ({
+    //     ...prevState,
+    //     selectedInterview: this.props.updatedInterview
+    //   }))
+    // }
+  }
+
   toggle = () => {
     this.setState({
       modal: !this.state.modal,
@@ -63,6 +73,7 @@ export default class Calendar extends React.Component {
   };
 
   render() {
+    console.log(this.state)
     console.log(this.props.interviews);
     return (
       <>
@@ -71,6 +82,7 @@ export default class Calendar extends React.Component {
             isOpen={this.state.modal}
             selectedInterview={this.state.selectedInterview}
             handleDelete={this.props.handleDelete}
+            handleEdit={this.props.handleEdit}
             toggle={this.toggle}
             // className={this.props.className}
           />
