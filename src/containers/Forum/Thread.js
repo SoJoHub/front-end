@@ -102,7 +102,6 @@ export default function Thread(props) {
             >
             Edit
           </Button>
-          <br></br>
           <Button
             variant="contained"
             color="default"

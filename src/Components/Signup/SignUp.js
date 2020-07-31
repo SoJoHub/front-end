@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -46,8 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+
+export default function SignUp(props) {
   const classes = useStyles();
+  const history = useHistory();
 
   const [state, setState] = useState({
     firstName: "",
@@ -84,6 +87,8 @@ export default function SignUp() {
         const userInfo = { userToken: token.token, name: token.user.name };
         window.localStorage.setItem("sojohub", JSON.stringify(userInfo));
       });
+      // history.push('/')
+      props.history.push('/');
   };
 
   const changeHandler = (e) => {

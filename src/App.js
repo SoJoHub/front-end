@@ -45,7 +45,7 @@ class App extends React.Component {
             />
             {this.state.loggedIn !== "null" || !this.state.loggedIn ? (
               <>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" render={() => <Home />} />
                 <Route
                   exact
                   path="/Applications"
@@ -64,7 +64,7 @@ class App extends React.Component {
               </>
             ) : (
               <>
-                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/signup" render={(props) => <SignUp {...props} />} />
                 <Route
                   exact
                   path="/login"

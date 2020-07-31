@@ -157,15 +157,6 @@ const ApplicationDetail = (props) => {
             </Grid>
             <Button
               variant="contained"
-              color="primary"
-              className={classes.button}
-              startIcon={<DeleteIcon />}
-              onClick={toggleEditForm}
-            >
-              Edit
-            </Button>
-            <Button
-              variant="contained"
               color="secondary"
               className={classes.button}
               startIcon={<DeleteIcon />}

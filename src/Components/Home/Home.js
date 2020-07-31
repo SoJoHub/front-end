@@ -9,6 +9,8 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
+import Box from '@material-ui/core/Box';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
+    textAlign: "left",
+    // color: theme.palette.text.secondary,
   },
 }));
 const Home = () => {
@@ -107,38 +109,37 @@ const Home = () => {
     <div className={classes.root}>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Grid item xs={12}>
+        <Box item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h4">Dashboard</Typography>
-            <Typography variant="p"> Welcome </Typography>
+            <h1 className={"app-cont-title"}>Dashboard</h1>
+            <h3 variant="p"> Welcome </h3>
             {username}
           </Paper>
-        </Grid>
+        </Box>
       </Container>
       <Container maxWidth="lg">
-        <Grid container spacing={0}>
-          {/* <Grid item xs={12}> */}
-          <Grid item xs={8}>
+        <Box container spacing={0}>
+          <Box >
             <Paper className={classes.paper}>
               <Typography variant="h4">Stats</Typography>
-
               {<Stats stat={getStats()} />}
             </Paper>
-          </Grid>
-          <Grid item xs={4}>
-            <Paper className={classes.paper}>
-              <Typography variant="h4">Interviews</Typography>
-              {<Interviews interviews={getInterviews()} />}
-            </Paper>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
+          </Box>
+        </Box>
+        <Box >
+          <Paper className={classes.paper}>
+            <Typography variant="h4">Interviews</Typography>
+            {<Interviews interviews={getInterviews()} />}
+          </Paper>
+        </Box>
+      </Container>
+      <Container>
+        <Box item xs={12}>
           <Paper className={classes.paper}>
             <Typography variant="h4">Recent Applications</Typography>
             {<ApplicationsList applications={applications} />}
           </Paper>
-        </Grid>
-        {/* </Grid> */}
+        </Box>
       </Container>
     </div>
   );

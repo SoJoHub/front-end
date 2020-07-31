@@ -8,7 +8,7 @@ const ApplicationsList = (props) => {
   const renderApplications = () => {
     // console.log(props.applications);
     // debugger;
-    return props.applications.slice(0, 4).map((application) => (
+    return props.applications.map((application) => (
       // <div className="app-card">
         <Application key={application.id} application={application} />
       // </div>

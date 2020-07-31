@@ -23,13 +23,12 @@ import Select from "@material-ui/core/Select";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
+
     alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#415a77",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -113,6 +112,7 @@ export default function AddApplication(props) {
       .then((newApplication) => {
         props.addApplication(newApplication);
       });
+      displayFormHandler()
   };
 
   return (
@@ -123,6 +123,7 @@ export default function AddApplication(props) {
             onClick={displayFormHandler}
             variant="contained"
             color="primary"
+            className="add-app-button"
           >
             Hide Application Form
           </Button>
@@ -184,6 +185,7 @@ export default function AddApplication(props) {
                 margin="normal"
                 // required
                 fullWidth
+                multiline
                 id="description"
                 label="description"
                 name="description"
@@ -241,7 +243,9 @@ export default function AddApplication(props) {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                // className={classes.submit}
+                className="add-app-button"
+                // onClick={displayFormHandler}
               >
                 Submit
               </Button>
@@ -252,7 +256,7 @@ export default function AddApplication(props) {
         <Button
           onClick={displayFormHandler}
           variant="contained"
-          color="default"
+          className="add-app-button"
         >
           {isEditForm ? "Edit Application" : "Add New Application"}
         </Button>

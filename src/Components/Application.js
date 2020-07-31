@@ -19,9 +19,10 @@ const Application = (props) => {
         {/* <Grid container wrap="nowrap" spacing={2} direction="row"> */}
           {/* <Grid item><Avatar alt="Remy Sharp" src={imgLink} /></Grid> */}
           <Box className="app-card">
-            <h2 style={{ margin: 0, textAlign: "left" }}>
-              Application {props.application.id}
-            </h2>
+            <h3 style={{ margin: 0, textAlign: "left" }}>
+              <u>Application {props.application.id}</u>
+            </h3>
+            <br></br>
             <p style={{ textAlign: "left" }}>
               <b>Job Title:</b> {props.application.job_listing.title}
             </p>
@@ -34,7 +35,8 @@ const Application = (props) => {
             <p style={{ textAlign: "left" }}>
               <b>Status:</b> {props.application.status}
             </p>
-            <Button onClick={handleClick} variant="contained" color="default">
+            <br></br>
+            <Button onClick={handleClick} variant="contained" className="view-details-button">
                 View Details
             </Button>
           </Box>

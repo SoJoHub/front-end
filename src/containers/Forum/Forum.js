@@ -6,7 +6,7 @@ export default class Forum extends React.Component {
   render() {
     return (
       <div>
-        <h1> Welcome to the Forum!</h1>
+        <h1 className={"app-cont-title"}> Welcome to the Forum!</h1>
         {/* <NewThread /> */}
         <ThreadContainer />
       </div>

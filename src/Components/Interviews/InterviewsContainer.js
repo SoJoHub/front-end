@@ -2,6 +2,8 @@ import React from "react";
 import Calendar from "./Calendar.js";
 import AddInterview from './AddInterview.js'
 import EditInterview from './EditInterview'
+import Container from "@material-ui/core/Container";
+
 
 export default class InterviewsContainer extends React.Component {
   state = {
@@ -98,7 +100,7 @@ export default class InterviewsContainer extends React.Component {
     console.log(this.state.editInterviewObj)
     return (
       <div>
-        <h1>Interviews Calendar</h1>
+        <h1 className={"app-cont-title"}>Interviews Calendar</h1>
         {this.state.editInterview ? <EditInterview   editInterview={this.editedInterview} interviewObj={this.state.editInterviewObj}/> : <AddInterview addInterview={this.addInterview}/>}
         
         <Calendar

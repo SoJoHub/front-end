@@ -125,7 +125,7 @@ export default function AddInterview(props) {
     <> 
     {interviewForm ? (
     <Container component="main" maxWidth="lg">
-        <Button onClick={displayFormHandler} variant="contained" color="primary">
+        <Button onClick={displayFormHandler} variant="contained" className="add-app-button">
             Hide Interview Form
         </Button>
       <CssBaseline />
@@ -252,7 +252,9 @@ export default function AddInterview(props) {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                // className={classes.submit}
+                className="add-app-button"
+                
               >
                 Submit
               </Button>
@@ -263,7 +265,8 @@ export default function AddInterview(props) {
         <Button
           onClick={displayFormHandler}
           variant="contained"
-          color="primary"
+          // color="primary"
+          className="add-app-button"
         >
           Add New Interview
         </Button>

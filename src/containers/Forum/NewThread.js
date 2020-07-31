@@ -43,7 +43,7 @@ export default function NewThread(props) {
   const user = window.localStorage.getItem("sojohub");
   const token = user && user !== "null" ? JSON.parse(user).userToken : null;
 
-  const displayFormHanlder = () => {
+  const displayFormHandler = () => {
     props.setPostForm((prevState) => {
       return !prevState;
     });
@@ -116,9 +116,10 @@ export default function NewThread(props) {
       {props.postForm ? (
         <Container component="main" maxWidth="lg">
           <Button
-            onClick={displayFormHanlder}
+            onClick={displayFormHandler}
             variant="contained"
             color="primary"
+            className="add-app-button"
           >
             Hide Post Form
           </Button>
@@ -177,7 +178,8 @@ export default function NewThread(props) {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                // className={classes.submit}
+                className="add-app-button"
                 disabled={!token}
               >
                 {props.postId ? "Edit Post" : "Create Post"}
@@ -187,9 +189,11 @@ export default function NewThread(props) {
         </Container>
       ) : (
         <Button
-          onClick={displayFormHanlder}
+          onClick={displayFormHandler}
           variant="contained"
           color="primary"
+          className="add-app-button"
+          marginLeft=""
         >
           {props.postId ? "Edit Post" : "Create Post"}
         </Button>

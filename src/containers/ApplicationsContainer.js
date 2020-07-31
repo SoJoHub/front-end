@@ -43,10 +43,10 @@ class ApplicationsContainer extends React.Component {
     console.log(this.state);
     return (
       <div>
-        <Container maxWidth="lg">
-          <h1 className={"app-cont-title"}> My Applications </h1>
+        <Container style={{ margin: 0, textAlign: "left" }}>
+          <h1 className={"app-cont-title"}>My Applications</h1>
           <AddApplication application={{}} addApplication={this.addApplication} />
-          <Box>
+          <Box className="app-list">
             <ApplicationsList
               applications={this.state.applications}
               deleteApplication={this.deleteApplication}

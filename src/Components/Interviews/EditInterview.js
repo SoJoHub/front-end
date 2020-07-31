@@ -220,8 +220,10 @@ export default function EditInterview(props) {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="primary"
-                className={classes.submit}
+                color="secondary"
+                onClick={displayFormHandler}
+                // className={classes.submit}
+                className="add-app-button"
               >
                 Submit
               </Button>
@@ -233,6 +235,7 @@ export default function EditInterview(props) {
           onClick={displayFormHandler}
           variant="contained"
           color="primary"
+          
         >
           Edit Interview
         </Button>
