@@ -21,9 +21,9 @@ const Interviews = (props) => {
   return (
     <div style={{ height: 424 }}>
       {props.interviews.length > 0 ? (
-        <Paper style={{ height: 375, overflow: "auto" }}>
+        // <Paper style={{ height: 375, overflow: "auto" }}>
           <List>{renderInterview()}</List>
-        </Paper>
+        /* </Paper> */
       ) : (
         <div>
           <Interview key="1" interview="Upcoming" company="Dream Company" />

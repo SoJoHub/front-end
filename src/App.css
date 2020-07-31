@@ -45,13 +45,14 @@
 }
 
 #calendar {
-  background-color: white;
+  background-color: transparent;
   z-index: -1;
   /* position: relative; */
 }
 
 .fc .fc-media-screen .fc-direction-ltr .fc-theme-standard {
   z-index: -1;
+
   /* position: relative; */
 }
 
@@ -114,7 +115,7 @@
   color: white !important;
   /* margin: 10px 40px !important; */
   height: 40px;
-  margin-top: 30px !important;
+  /* margin-top: 30px !important; */
   align-self: flex-end !important;
 }
 
@@ -127,4 +128,33 @@
 
 .app-form {
   /* background-color: gray !important; */
+}
+
+/* .dash-stats-interviews {
+  display: flex !important;
+  flex-direction: row !important;
+
+} */
+
+.flexcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 50px;
+}
+
+.MuiGrid-spacing-xs-2 .MuiGrid-item {
+  padding: 8px;
+  margin-top: 20px;
+}
+
+.calendar {
+  background-color: transparent !important;
 }

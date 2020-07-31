@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
   root2: {
     width: "100%",
     maxWidth: 660,
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     // color: theme.palette.text.secondary,
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
   },
 }));
 
@@ -106,6 +106,7 @@ export default function Stats(props) {
             ]}
             options={{
               title: "Your Numbers",
+              backgroundColor: 'transparent'
             }}
             rootProps={{ "data-testid": "1" }}
           />

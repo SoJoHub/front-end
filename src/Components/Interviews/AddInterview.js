@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#415a77",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -267,6 +267,7 @@ export default function AddInterview(props) {
           variant="contained"
           // color="primary"
           className="add-app-button"
+          style={{marginLeft: "3em", marginBottom: "2em"}}
         >
           Add New Interview
         </Button>

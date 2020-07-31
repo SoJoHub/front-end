@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#415a77",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -203,19 +203,21 @@ export default function SignUp(props) {
                 value={state.password}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
-            </Grid>
+            </Grid> */}
           </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            // className={classes.submit}
+            className="add-app-button"
+            style={{marginTop: "3em"}}
           >
             Sign Up
           </Button>

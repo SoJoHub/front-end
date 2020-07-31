@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#415a77",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -194,6 +194,7 @@ export default function NewThread(props) {
           color="primary"
           className="add-app-button"
           marginLeft=""
+          style={{marginLeft: "3em", marginTop: "2em", marginBottom: "1em"}}
         >
           {props.postId ? "Edit Post" : "Create Post"}
         </Button>

@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import ApplicationForm from "./AddApplication"
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,17 +60,17 @@ const ApplicationDetail = (props) => {
       //   })
       console.log(todo)
 
-        fetch(`http://localhost:3000/todos/${todo.id}`, {
-            method: 'PATCH',
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token,
-                Accept: "application/json",
-            },
-            body: JSON.stringify(todo)
-        })
-            .then(r => r.json())
-            .then(console.log)
+        // fetch(`http://localhost:3000/todos/${todo.id}`, {
+        //     method: 'PATCH',
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Authorization": token,
+        //         Accept: "application/json",
+        //     },
+        //     body: JSON.stringify(todo)
+        // })
+        //     .then(r => r.json())
+        //     .then(console.log)
     }
 
 
@@ -132,35 +133,26 @@ const ApplicationDetail = (props) => {
     console.log(state)
     return (
         <div>
-            <Container maxWidth="lg" className={classes.title}>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                        <Typography variant="h4">Application Details</Typography>
-                    </Paper>
-                </Grid>
-            </Container>
+            <h1 className="app-cont-title">Application Details</h1>
            {state.job_listing && <ApplicationForm handleApplicationUpdate ={handleApplicationUpdate} application={state}/>}
-            <Grid container spacing="2">
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>
-                        <h3>Application Status</h3>
-                        <p>{state.status}</p>
-                        <br></br>
-                        <JobListingDetail application={state}/>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>
-                        <Checklist todos={state.todos} handleUpdate={handleUpdate}/>
-                    </Paper>
-                </Grid>
-            </Grid>
+            <Box container spacing="2" className="app-details">
+                <Box item xs={6} style={{marginTop: "3em"}}>
+                    <h3>Application Status</h3>
+                    <p>{state.status}</p>
+                    <br></br>
+                    <JobListingDetail application={state}/>
+                </Box>
+                <Box item xs={6} style={{marginTop: "2.em"}}>
+                    <Checklist todos={state.todos} handleUpdate={handleUpdate}/>
+                </Box>
+            </Box>
             <Button
               variant="contained"
-              color="secondary"
+              color="default"
               className={classes.button}
               startIcon={<DeleteIcon />}
               onClick={deleteApplication}
+              style={{marginLeft: "3em"}}
             >
               Delete
             </Button>

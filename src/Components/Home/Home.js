@@ -108,39 +108,35 @@ const Home = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Container maxWidth="lg">
+      {/* <Container maxWidth="lg"> */}
         <Box item xs={12}>
-          <Paper className={classes.paper}>
+          <Box className={classes.paper}>
             <h1 className={"app-cont-title"}>Dashboard</h1>
-            <h3 variant="p"> Welcome </h3>
-            {username}
-          </Paper>
-        </Box>
-      </Container>
-      <Container maxWidth="lg">
-        <Box container spacing={0}>
-          <Box >
-            <Paper className={classes.paper}>
-              <Typography variant="h4">Stats</Typography>
-              {<Stats stat={getStats()} />}
-            </Paper>
+            {/* <h3 variant="p"> Welcome </h3>
+            {username} */}
           </Box>
         </Box>
-        <Box >
-          <Paper className={classes.paper}>
-            <Typography variant="h4">Interviews</Typography>
-            {<Interviews interviews={getInterviews()} />}
-          </Paper>
+      {/* </Container> */}
+      {/* <Container maxWidth="lg" className="dash-stats-interviews"> */}
+        <Box container spacing={0}>
+          <Box className="flexcontainer">
+            <Box className={classes.paper}>
+              <h3>Application Statistics</h3>
+              {<Stats stat={getStats()} />}
+            </Box>
+            <Box>
+              <h3>Interviews</h3>
+              {<Interviews interviews={getInterviews()} />}
+            </Box>
+          </Box>
         </Box>
-      </Container>
-      <Container>
         <Box item xs={12}>
-          <Paper className={classes.paper}>
-            <Typography variant="h4">Recent Applications</Typography>
+          <Box>
+            <h3 style={{marginLeft: "3.5em", marginTop: "3em"}}>Recent Applications</h3>
             {<ApplicationsList applications={applications} />}
-          </Paper>
+          </Box>
         </Box>
-      </Container>
+      {/* </Container> */}
     </div>
   );
 };

@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
+    marginLeft: "100px"
   },
 }));
 
@@ -79,9 +80,9 @@ export default function CheckboxList(props) {
                         </ListItemIcon>
                         <ListItemText id={labelId} primary={`${value.task}`} />
                         <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="comments">
+                        {/* <IconButton edge="end" aria-label="comments">
                             <CommentIcon />
-                        </IconButton>
+                        </IconButton> */}
                         </ListItemSecondaryAction>
                     </ListItem>
                 );

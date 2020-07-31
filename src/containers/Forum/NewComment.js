@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#415a77",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -127,7 +127,9 @@ export default function NewComment(props) {
           <Button
             onClick={displayFormHandler}
             variant="contained"
-            color="primary"
+            // color="primary"
+            style={{marginLeft: "1em"}}
+            className="add-app-button"
           >
             Hide comment Form
           </Button>
@@ -169,7 +171,8 @@ export default function NewComment(props) {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                // className={classes.submit}
+                className="add-app-button"
                 disabled={!token}
               >
                 {props.comment.id ? "Edit Comment" : "Create Comment"}
@@ -181,7 +184,9 @@ export default function NewComment(props) {
         <Button
           onClick={displayFormHandler}
           variant="contained"
-          color="primary"
+          // color="primary"
+          style={{marginLeft: "3em", marginBottom: "2em"}}
+          className="add-app-button"
         >
           New Comment
         </Button>

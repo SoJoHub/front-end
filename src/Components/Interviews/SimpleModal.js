@@ -1,6 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import Button from "@material-ui/core/Button";
+import ClearIcon from '@material-ui/icons/Clear';
 
 // function rand() {
 //   return Math.round(Math.random() * 20) - 10;
@@ -21,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
     width: 400,
-    backgroundColor: "rgba(201, 76, 76, 0.1)",
-    border: "2px solid #000",
+    backgroundColor: "#778da9",
+    // border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: "30px",
     zIndex: 100,
     alignSelf: "center",
     justifySelf: "center",
@@ -35,9 +37,16 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     zIndex: -1,
     width: 400,
-    backgroundColor: "rgba(201, 76, 76, 0.1)",
+    backgroundColor: "#778da9",
     border: "2px solid #000",
   },
+  modalButtons: {
+    textDecoration: "none",
+    '&:hover': {
+      color: 'white'
+    }
+    
+  }
 }));
 
 export default function SimpleModal(props) {
@@ -52,6 +61,7 @@ export default function SimpleModal(props) {
 
   const handleClose = () => {
     setOpen(false);
+    console.log("closed")
   };
 
   // const handleDelete = () => {
@@ -60,6 +70,7 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
+      <ClearIcon onClick={() => props.toggle()}/>
       <h2 id="simple-modal-title">
         Interview Details for {props.selectedInterview.application_company}
       </h2>
@@ -75,20 +86,21 @@ export default function SimpleModal(props) {
         <br></br>
         Notes: {props.selectedInterview.notes}
       </p>
-      <button
+      <br></br>
+      <Button
       onClick={() => {
           props.handleEdit(props.selectedInterview);
           props.toggle();
         }}
-      >Edit Interview</button>
-      <button
+      >Edit Interview</Button>
+      <Button
         onClick={() => {
           props.handleDelete(props.selectedInterview);
           props.toggle();
         }}
       >
         Delete Interview
-      </button>
+      </Button>
     </div>
   );
 

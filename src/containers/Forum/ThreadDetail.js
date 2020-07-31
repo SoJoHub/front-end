@@ -28,13 +28,14 @@ export default function ThreadDetail(props) {
         key={comment.id}
         commentSetState={setState}
         showNewCommentForm={showNewCommentForm}
+        style={{borderRadius: "10px"}}
       />
     ));
   };
   return (
     <div>
-      <h1>{state.topic && state.topic.title}</h1>
-      <p>{state.topic && state.topic.description}</p>
+      <h1 className={"app-cont-title"}><b>Topic:</b> {state.topic && state.topic.title}</h1>
+      <p className={"app-cont-title"} style={{marginTop: "-4em"}}>{state.topic && state.topic.description}</p>
       <NewComment
         topic_id={props.match.params.id}
         commentState={setState}

@@ -4,6 +4,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
     display: "inline",
   },
   button: {
-    margin: "1px",
+    margin: "20px",
+    // padding: "5px"
+    marginTop: "30px"
   },
 }));
 
@@ -61,7 +64,7 @@ export default function Comment(props) {
   return (
     <div style={{ padding: 14 }} className="App">
       {/* <h1>Comments</h1> */}
-      <Paper style={{ padding: "0px 20px" }}>
+      <Paper style={{ padding: "0px 20px", margin: "-25px 20px", borderRadius: "8px" }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar alt="Remy Sharp" src={imgLink} />
@@ -79,21 +82,21 @@ export default function Comment(props) {
             <>
               <Button
                 variant="contained"
-                color="secondary"
+                color="default"
+                className={classes.button}
+                startIcon={<EditIcon />}
+                onClick={editComment}
+              >
+                Edit
+              </Button>
+              <Button
+                variant="contained"
+                color="default"
                 className={classes.button}
                 startIcon={<DeleteIcon />}
                 onClick={deleteComment}
               >
                 Delete
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                startIcon={<DeleteIcon />}
-                onClick={editComment}
-              >
-                Edit
               </Button>
             </>
           )}

@@ -257,6 +257,7 @@ export default function AddApplication(props) {
           onClick={displayFormHandler}
           variant="contained"
           className="add-app-button"
+          style={{marginLeft: "3em"}}
         >
           {isEditForm ? "Edit Application" : "Add New Application"}
         </Button>

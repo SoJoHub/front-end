@@ -102,13 +102,15 @@ export default class InterviewsContainer extends React.Component {
       <div>
         <h1 className={"app-cont-title"}>Interviews Calendar</h1>
         {this.state.editInterview ? <EditInterview   editInterview={this.editedInterview} interviewObj={this.state.editInterviewObj}/> : <AddInterview addInterview={this.addInterview}/>}
-        
-        <Calendar
-          interviews={this.state.interviews}
-          handleDelete={this.handleDelete}
-          handleEdit={this.handleEdit}
-          updatedInterview={this.state.editInterviewObj}
-        />
+        <Container maxWidth= "md">
+          <Calendar
+            interviews={this.state.interviews}
+            handleDelete={this.handleDelete}
+            handleEdit={this.handleEdit}
+            updatedInterview={this.state.editInterviewObj}
+            style={{backgroundColor: "red"}}
+          />
+        </Container>
       </div>
     );
   }
