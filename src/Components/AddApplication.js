@@ -235,7 +235,7 @@ export default function AddApplication(props) {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                value= {state.date_applied ? state.date_applied.split("T")[0] : null}
+                value= {state.date_applied ? state.date_applied : null}
               />
 
               <Button

@@ -30,7 +30,7 @@ const Application = (props) => {
               <b>Company:</b> {props.application.job_listing.company}
             </p>
             <p style={{ textAlign: "left" }}>
-              <b>Date Applied:</b> {props.application.date_applied}
+              <b>Date Applied:</b> {props.application.date_applied.split("T")[0]}
             </p>
             <p style={{ textAlign: "left" }}>
               <b>Status:</b> {props.application.status}

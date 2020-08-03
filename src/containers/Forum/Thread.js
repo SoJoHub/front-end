@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline",
   },
   button: {
-    margin: "1px",
+    margin: "10px",
   }
 }));
 
@@ -97,7 +97,7 @@ export default function Thread(props) {
             variant="contained"
             color="default"
             className={classes.button}
-            startIcon={<EditIcon />}
+            // startIcon={<EditIcon />}
             onClick={editThread}
             >
             Edit
@@ -106,8 +106,9 @@ export default function Thread(props) {
             variant="contained"
             color="default"
             className={classes.button}
-            startIcon={<DeleteIcon />}
+            // startIcon={<DeleteIcon />}
             onClick={deleteThread}
+            style={{paddingLeft: "5px", paddingRight: "5px"}}
             >
             Delete
           </Button>
