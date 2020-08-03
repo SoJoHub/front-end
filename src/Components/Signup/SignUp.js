@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#415a77",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -46,8 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+
+export default function SignUp(props) {
   const classes = useStyles();
+  const history = useHistory();
 
   const [state, setState] = useState({
     firstName: "",
@@ -84,6 +87,8 @@ export default function SignUp() {
         const userInfo = { userToken: token.token, name: token.user.name };
         window.localStorage.setItem("sojohub", JSON.stringify(userInfo));
       });
+      // history.push('/')
+      props.history.push('/');
   };
 
   const changeHandler = (e) => {
@@ -198,19 +203,21 @@ export default function SignUp() {
                 value={state.password}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
-            </Grid>
+            </Grid> */}
           </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            // className={classes.submit}
+            className="add-app-button"
+            style={{marginTop: "3em"}}
           >
             Sign Up
           </Button>

@@ -12,13 +12,16 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { useHistory } from "react-router-dom";
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        SoJoHub
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -35,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#415a77",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -43,15 +46,23 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#415a77"
   },
+  error: {
+    color: "red"
+  }
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
+  const history = useHistory()
   const classes = useStyles();
+
   const [state, setState] = useState({
     email: "",
     password: "",
   });
+
+  const [error, setError] = useState("")
 
   const changeHandler = (e) => {
     e.persist();
@@ -63,6 +74,7 @@ export default function SignIn() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+
     const payLoad = {
       method: "POST",
       headers: {
@@ -74,9 +86,20 @@ export default function SignIn() {
     fetch("http://localhost:3000/login", payLoad)
       .then((r) => r.json())
       .then((token) => {
-        const userInfo = { userToken: token.token, name: token.user.name };
-        window.localStorage.setItem("sojohub", JSON.stringify(userInfo));
+        if(token.error){
+          setState({
+            email: "",
+            password: ""
+          })
+          setError(token.error)
+        } else {
+          const userInfo = { userToken: token.token, name: token.user.name, user_id: token.user.id};
+          window.localStorage.setItem("sojohub", JSON.stringify(userInfo));
+          props.setLoginState(userInfo);
+          history.push('/')
+        }
       });
+ 
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -86,9 +109,12 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
-        <form onSubmit={handleLogin} className={classes.form} noValidate>
+        <Typography component="h4" className={classes.error}>
+          {error}
+        </Typography>
+        <form onSubmit={handleLogin} className={classes.form}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -124,7 +150,9 @@ export default function SignIn() {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            // className={classes.submit}
+            className="add-app-button"
+            style={{marginTop: "1em"}}
           >
             Sign In
           </Button>

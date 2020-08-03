@@ -1,15 +1,21 @@
 import React from "react";
 import Application from "./Application";
+import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
+import { flexbox, flex } from '@material-ui/system';
+import Box from '@material-ui/core/Box';
 
 const ApplicationsList = (props) => {
   const renderApplications = () => {
-    console.log(props.applications);
+    // console.log(props.applications);
+    // debugger;
     return props.applications.map((application) => (
-      <Application key={application.id} application={application} />
+      // <div className="app-card">
+        <Application key={application.id} application={application} />
+      // </div>
     ));
   };
 
-  return <div>{renderApplications()}</div>;
+  return <Box className="app-list">{renderApplications()}</Box>;
 };
 
 export default ApplicationsList;

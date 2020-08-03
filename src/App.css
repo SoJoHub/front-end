@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  font-family: 'Inter', Helvetica, sans-serif;
+}
+
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -35,4 +42,119 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#calendar {
+  background-color: transparent;
+  z-index: -1;
+  /* position: relative; */
+}
+
+.fc .fc-media-screen .fc-direction-ltr .fc-theme-standard {
+  z-index: -1;
+
+  /* position: relative; */
+}
+
+/* .MuiGrid-root {
+  border-radius: 0px; */
+  /* background-color: red; */
+  /* width: 800px; 
+} */
+
+/* .MuiGrid-item {
+  border-style: solid;
+  border-color: pink;
+} */
+
+.view-details-button {
+  background-color: lightgray !important;
+}
+
+.MuiToolbar-root {
+  background-color: #0D1B2A;
+}
+
+.app-list {
+  display: flex !important;
+  flex-flow: row wrap !important;
+  justify-content: center !important;
+  align-content: flex-start !important;
+}
+
+.app-cont-title {
+  padding-left: 25px;
+  font-weight: 400;
+  align-self: center;
+  padding: 30px 40px;
+}
+
+.app-card {
+  background-color: white;
+  /* border-style: solid; */
+  border-width: .1px;
+  width: 250px;
+  padding: 25px;
+  margin: 12px;
+  border-radius: 5px;
+  border-color: lightgray;
+  box-shadow: 1px 1px lightgray;
+  flex-grow: 3;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+}
+
+.app-card-details {
+  padding: 20px;
+  font-weight: 300;
+}
+
+.add-app-button {
+  background-color: #415a77 !important;
+  color: white !important;
+  /* margin: 10px 40px !important; */
+  height: 40px;
+  /* margin-top: 30px !important; */
+  align-self: flex-end !important;
+}
+
+/* .top-bar {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: flex-start;
+} */
+
+.app-form {
+  /* background-color: gray !important; */
+}
+
+/* .dash-stats-interviews {
+  display: flex !important;
+  flex-direction: row !important;
+
+} */
+
+.flexcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 50px;
+}
+
+.MuiGrid-spacing-xs-2 .MuiGrid-item {
+  padding: 8px;
+  margin-top: 20px;
+}
+
+.calendar {
+  background-color: transparent !important;
 }
