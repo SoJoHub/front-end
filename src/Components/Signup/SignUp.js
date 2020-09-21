@@ -81,7 +81,7 @@ export default function SignUp(props) {
       body: JSON.stringify(newUser),
     };
     // console.log(payLoad);
-    fetch("http://localhost:3000/users", payLoad)
+    fetch("https://sojohubbackend.herokuapp.com/users", payLoad)
       .then((r) => r.json())
       .then((token) => {
         const userInfo = { userToken: token.token, name: token.user.name };

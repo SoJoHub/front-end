@@ -14,7 +14,7 @@ class ApplicationsContainer extends React.Component {
     let user = window.localStorage.getItem("sojohub");
     if (user) {
       const token = JSON.parse(user).userToken;
-      fetch("http://localhost:3000/applications", {
+      fetch("https://sojohubbackend.herokuapp.com/applications", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

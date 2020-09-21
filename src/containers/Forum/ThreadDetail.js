@@ -10,7 +10,7 @@ export default function ThreadDetail(props) {
   console.log("post form state", postForm);
   console.log("comm", comment);
   useEffect(() => {
-    fetch(`http://localhost:3000/topics/${props.match.params.id}`)
+    fetch(`https://sojohubbackend.herokuapp.com/topics/${props.match.params.id}`)
       .then((r) => r.json())
       .then((commentObj) => {
         setState(commentObj);

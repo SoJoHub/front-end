@@ -37,7 +37,7 @@ const ApplicationDetail = (props) => {
     let user = window.localStorage.getItem("sojohub");
     const token = JSON.parse(user).userToken;
     useEffect(() => {
-        fetch(`http://localhost:3000/applications/${props.match.params.id}`, {
+        fetch(`https://sojohubbackend.herokuapp.com/applications/${props.match.params.id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const ApplicationDetail = (props) => {
 
     const handleApplicationUpdate = (obj) => {
      
-      fetch(`http://localhost:3000/applications/${props.match.params.id}`, {
+      fetch(`https://sojohubbackend.herokuapp.com/applications/${props.match.params.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +108,7 @@ const ApplicationDetail = (props) => {
     }
 
     const deleteApplication = () => {
-      fetch(`http://localhost:3000/applications/${props.match.params.id}`, {
+      fetch(`https://sojohubbackend.herokuapp.com/applications/${props.match.params.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

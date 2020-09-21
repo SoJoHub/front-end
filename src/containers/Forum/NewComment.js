@@ -53,7 +53,7 @@ export default function NewComment(props) {
       },
       body: JSON.stringify({ content: props.comment.content }),
     };
-    fetch(`http://localhost:3000/comments/${props.comment.id}`, payLoad)
+    fetch(`https://sojohubbackend.herokuapp.com/comments/${props.comment.id}`, payLoad)
       .then((r) => r.json())
       .then((updatedComObj) => {
         props.commentState((prevState) => {
@@ -100,7 +100,7 @@ export default function NewComment(props) {
       body: JSON.stringify({ ...props.comment, topic_id: props.topic_id }),
     };
     console.log(payLoad);
-    fetch("http://localhost:3000/comments", payLoad)
+    fetch("https://sojohubbackend.herokuapp.com/comments", payLoad)
       .then((r) => r.json())
       .then((newComment) => {
         console.log(newComment);

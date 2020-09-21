@@ -48,7 +48,7 @@ export default function Comment(props) {
       },
     };
 
-    fetch(`http://localhost:3000/comments/${props.comment.id}`, payLoad)
+    fetch(`https://sojohubbackend.herokuapp.com/comments/${props.comment.id}`, payLoad)
       .then((r) => r.json())
       .then((deletedComment) => {
         props.commentSetState((prevState) => {

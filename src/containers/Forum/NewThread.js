@@ -70,7 +70,7 @@ export default function NewThread(props) {
     body: JSON.stringify(props.formState),
   };
   console.log(props.formState);
-  fetch("http://localhost:3000/topics", payLoad)
+  fetch("https://sojohubbackend.herokuapp.com/topics", payLoad)
     .then((r) => r.json())
     .then((newPost) => {
       console.log(newPost);
@@ -92,7 +92,7 @@ export default function NewThread(props) {
       },
       body: JSON.stringify(props.formState),
     };
-    fetch(`http://localhost:3000/topics/${props.postId}`, payLoad)
+    fetch(`https://sojohubbackend.herokuapp.com/topics/${props.postId}`, payLoad)
       .then((r) => r.json())
       .then((updatedPost) => {
         console.log(updatedPost);

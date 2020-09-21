@@ -65,7 +65,7 @@ export default function AddInterview(props) {
       let user = window.localStorage.getItem("sojohub");
       if (user) {
         const token = JSON.parse(user).userToken;
-        fetch("http://localhost:3000/applications", {
+        fetch("https://sojohubbackend.herokuapp.com/applications", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -113,7 +113,7 @@ export default function AddInterview(props) {
             },
             body: JSON.stringify(state),
         };
-        fetch("http://localhost:3000/interviews", payLoad)
+        fetch("https://sojohubbackend.herokuapp.com/interviews", payLoad)
             .then((r) => r.json())
             .then((newInterview) => {
                 props.addInterview(newInterview);

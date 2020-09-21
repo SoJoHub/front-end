@@ -17,7 +17,7 @@ export default class InterviewsContainer extends React.Component {
     let user = window.localStorage.getItem("sojohub");
     if (user) {
       const token = JSON.parse(user).userToken;
-      fetch("http://localhost:3000/interviews", {
+      fetch("https://sojohubbackend.herokuapp.com/interviews", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export default class InterviewsContainer extends React.Component {
 
     let user = window.localStorage.getItem("sojohub");
     const token = JSON.parse(user).userToken;
-    fetch(`http://localhost:3000/interviews/${deletedInterview.id}`, {
+    fetch(`https://sojohubbackend.herokuapp.com/interviews/${deletedInterview.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

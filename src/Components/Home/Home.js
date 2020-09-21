@@ -38,7 +38,7 @@ const Home = () => {
         Authorization: token,
       },
     };
-    fetch("http://localhost:3000/applications", payLoad)
+    fetch("https://sojohubbackend.herokuapp.com/applications", payLoad)
       .then((r) => r.json())
       .then((applicationsObj) => {
         setApplications(applicationsObj);

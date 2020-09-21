@@ -47,7 +47,7 @@ export default function Thread(props) {
         Accept: "application/json",
       }
     };
-    fetch(`http://localhost:3000/topics/${props.threadInfo.id}`, payLoad)
+    fetch(`https://sojohubbackend.herokuapp.com/topics/${props.threadInfo.id}`, payLoad)
       .then((r) => r.json())
       .then((deletedThread) => {
         console.log(deletedThread)

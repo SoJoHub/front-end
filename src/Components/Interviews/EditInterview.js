@@ -114,7 +114,7 @@ export default function EditInterview(props) {
             },
             body: JSON.stringify(state),
         };
-        fetch(`http://localhost:3000/interviews/${props.interviewObj.id}`, payLoad)
+        fetch(`https://sojohubbackend.herokuapp.com/interviews/${props.interviewObj.id}`, payLoad)
             .then((r) => r.json())
             .then((newInterview) => {
                 // props.addInterview(newInterview);

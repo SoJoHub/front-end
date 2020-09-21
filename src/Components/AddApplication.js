@@ -107,7 +107,7 @@ export default function AddApplication(props) {
       },
       body: JSON.stringify(state),
     };
-    fetch("http://localhost:3000/applications", payLoad)
+    fetch("https://sojohubbackend.herokuapp.com/applications", payLoad)
       .then((r) => r.json())
       .then((newApplication) => {
         props.addApplication(newApplication);

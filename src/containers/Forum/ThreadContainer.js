@@ -14,7 +14,7 @@ export default function TheadContainer() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000/topics")
+    fetch("https://sojohubbackend.herokuapp.com/topics")
       .then((r) => r.json())
       .then((topicsObj) => {
         setState(topicsObj);
